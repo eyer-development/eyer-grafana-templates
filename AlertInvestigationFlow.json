@@ -1,0 +1,2067 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_YESOREYERAM-INFINITY-DATASOURCE",
+      "label": "yesoreyeram-infinity-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "yesoreyeram-infinity-datasource",
+      "pluginName": "Infinity"
+    },
+    {
+      "name": "DS_INFLUXDB",
+      "label": "influxdb",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.5.0-81938"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "marcusolsson-treemap-panel",
+      "name": "Treemap",
+      "version": "2.0.1"
+    },
+    {
+      "type": "panel",
+      "id": "nodeGraph",
+      "name": "Node Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "yesoreyeram-infinity-datasource",
+      "name": "Infinity",
+      "version": "2.11.1"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "description": "If this metric is equal or below 2, it means that at least 75% of the alerts are validated. The validated alerts are shown in the \"Alerts\" gauge to the right",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "super-light-orange",
+                "value": 3
+              },
+              {
+                "color": "super-light-red",
+                "value": 4
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 59,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "p75"
+          ],
+          "fields": "/^status$/",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.5.0-81938",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "alert_status",
+              "text": "status",
+              "type": "number"
+            }
+          ],
+          "computed_columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "$",
+          "source": "url",
+          "summarizeExpression": "",
+          "type": "json",
+          "url": "https://boomi.eyer.ai/api/v2/anomalies/current",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Noise Level",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "description": "Validated alerts. This means that the alert has a status flag < 2 -> Eyer has enough data to do solid anomaly detection",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "super-light-orange",
+                "value": 15
+              },
+              {
+                "color": "super-light-red",
+                "value": 30
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 63,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^summary$/",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.5.0-81938",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "severity_num",
+              "text": "Severity",
+              "type": "number"
+            },
+            {
+              "selector": "alert_status",
+              "text": "AlertStatus",
+              "type": "number"
+            }
+          ],
+          "computed_columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filterExpression": "AlertStatus<2",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "$",
+          "source": "url",
+          "summarizeExpression": "count(Severity)",
+          "type": "json",
+          "url": "https://boomi.eyer.ai/api/v2/anomalies/current",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Validated Alerts",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "super-light-orange",
+                "value": 50
+              },
+              {
+                "color": "super-light-red",
+                "value": 80
+              },
+              {
+                "color": "super-light-blue",
+                "value": 99
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "B summary"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Affected nodes"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "A summary"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total nodes"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 8,
+        "y": 0
+      },
+      "id": 60,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.5.0-81938",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "node_id",
+              "text": "id",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "$",
+          "source": "url",
+          "summarizeExpression": "count (id)",
+          "type": "json",
+          "url": "https://topology.eyer.ai/api/definitions/nodes",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "nodes_affected",
+              "text": "Node",
+              "type": "number"
+            },
+            {
+              "selector": "alert_status",
+              "text": "AlertStatus",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filterExpression": "AlertStatus<2",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "parser": "backend",
+          "refId": "B",
+          "root_selector": "$",
+          "source": "url",
+          "summarizeExpression": "sum (Node)",
+          "type": "json",
+          "url": "https://boomi.eyer.ai/api/v2/anomalies/current",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "super-light-orange",
+                "value": 50
+              },
+              {
+                "color": "super-light-red",
+                "value": 80
+              },
+              {
+                "color": "super-light-blue",
+                "value": 99
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "A summary"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total metrics"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "B summary"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Affected metrics"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 61,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.5.0-81938",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "display_name",
+              "text": "Stats",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "$.metrics",
+          "source": "url",
+          "summarizeExpression": "count (Stats)",
+          "type": "json",
+          "url": "https://topology.eyer.ai/api/definitions/nodes",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "metrics_affected",
+              "text": "MetricName",
+              "type": "number"
+            },
+            {
+              "selector": "alert_status",
+              "text": "AlertStatus",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filterExpression": "AlertStatus<2",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "parser": "backend",
+          "refId": "B",
+          "root_selector": "$",
+          "source": "url",
+          "summarizeExpression": "sum (MetricName)",
+          "type": "json",
+          "url": "https://boomi.eyer.ai/api/v2/anomalies/current",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "description": "\"Validated\" means that the alert has a status flag < 2 -> Eyer has enough data to do solid anomaly detection",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "no data",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "super-light-orange",
+                "value": 2
+              },
+              {
+                "color": "super-light-red",
+                "value": 3
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 5
+      },
+      "id": 62,
+      "options": {
+        "colorByField": "Severity",
+        "labelFields": [
+          "id",
+          "NodeNames",
+          "MetricInfo"
+        ],
+        "sizeField": "Metrics",
+        "textField": "NodeNames",
+        "tiling": "treemapSquarify"
+      },
+      "pluginVersion": "2.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "severity_num",
+              "text": "Severity",
+              "type": "number"
+            },
+            {
+              "selector": "id",
+              "text": "id",
+              "type": "string"
+            },
+            {
+              "selector": "items.#.node.name",
+              "text": "NodeNames",
+              "type": "string"
+            },
+            {
+              "selector": "metrics_affected",
+              "text": "Metrics",
+              "type": "number"
+            },
+            {
+              "selector": "items.#.metrics.#.name",
+              "text": "MetricInfo",
+              "type": "string"
+            },
+            {
+              "selector": "alert_status",
+              "text": "AlertStatus",
+              "type": "number"
+            }
+          ],
+          "computed_columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filterExpression": "AlertStatus<2",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "#(severity_num>=2)#",
+          "source": "url",
+          "summarizeBy": "",
+          "summarizeExpression": "",
+          "type": "json",
+          "url": "https://boomi.eyer.ai/api/v2/anomalies/current",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Needs your attention",
+      "type": "marcusolsson-treemap-panel"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "description": "\"Validated\" means that the alert has a status flag < 2 -> Eyer has enough data to do solid anomaly detection",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "no data",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "super-light-orange",
+                "value": 2
+              },
+              {
+                "color": "super-light-red",
+                "value": 3
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 5
+      },
+      "id": 67,
+      "options": {
+        "colorByField": "Severity",
+        "labelFields": [
+          "id",
+          "NodeNames",
+          "MetricInfo"
+        ],
+        "sizeField": "Metrics",
+        "textField": "NodeNames",
+        "tiling": "treemapSquarify"
+      },
+      "pluginVersion": "2.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "severity_num",
+              "text": "Severity",
+              "type": "number"
+            },
+            {
+              "selector": "id",
+              "text": "id",
+              "type": "string"
+            },
+            {
+              "selector": "items.#.node.name",
+              "text": "NodeNames",
+              "type": "string"
+            },
+            {
+              "selector": "metrics_affected",
+              "text": "Metrics",
+              "type": "number"
+            },
+            {
+              "selector": "items.#.metrics.#.name",
+              "text": "MetricInfo",
+              "type": "string"
+            },
+            {
+              "selector": "alert_status",
+              "text": "AlertStatus",
+              "type": "number"
+            }
+          ],
+          "computed_columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filterExpression": "AlertStatus<2",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "#(severity_num==1)#",
+          "source": "url",
+          "summarizeBy": "",
+          "summarizeExpression": "",
+          "type": "json",
+          "url": "https://boomi.eyer.ai/api/v2/anomalies/current",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Potential emerging anomalies",
+      "type": "marcusolsson-treemap-panel"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "description": "Only updates are charted. Make sure to adjust the time range to see when last update occured",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 1,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "noValue": "last",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "super-light-orange",
+                "value": 50
+              },
+              {
+                "color": "super-light-red",
+                "value": 80
+              },
+              {
+                "color": "super-light-blue",
+                "value": 99
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 66,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.0-81938",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "event_occured",
+              "text": "Timestamp",
+              "type": "timestamp"
+            },
+            {
+              "selector": "severity_num",
+              "text": "Severity",
+              "type": "number"
+            },
+            {
+              "selector": "nodes_affected",
+              "text": "Nodes affected",
+              "type": "number"
+            },
+            {
+              "selector": "metrics_affected",
+              "text": "Metrics affected",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "$",
+          "source": "url",
+          "type": "json",
+          "url": "https://boomi.eyer.ai/api/v2/anomalies/$GetAlertID",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Alert update history for ${GetAlertID}",
+      "type": "timeseries"
+    },
+    {
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 57,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<h3>Info on selected alert</h3>\nAlertId: ${GetAlertID:text}</p>\nNodes affected: ${GetAlertNodesName}<br>\nMetrics affected: ${GetAlertMetricsName}\n",
+        "mode": "html"
+      },
+      "pluginVersion": "11.5.0-81938",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 65,
+      "options": {
+        "edges": {},
+        "nodes": {},
+        "zoomMode": "cooperative"
+      },
+      "pluginVersion": "11.5.0-81938",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "id",
+              "text": "id",
+              "type": "string"
+            },
+            {
+              "selector": "first",
+              "text": "source",
+              "type": "string"
+            },
+            {
+              "selector": "second",
+              "text": "target",
+              "type": "string"
+            }
+          ],
+          "data": "[{\"correlations\": [{\"corr_id\": 0, \"first\": 1, \"second\": 1}, {\"corr_id\": 1, \"first\": 1, \"second\": 2}, {\"corr_id\": 2, \"first\": 1, \"second\": 3}, {\"corr_id\": 3, \"first\": 1, \"second\": 11}, {\"corr_id\": 4, \"first\": 2, \"second\": 1}, {\"corr_id\": 5, \"first\": 2, \"second\": 2}, {\"corr_id\": 6, \"first\": 2, \"second\": 14}, {\"corr_id\": 7, \"first\": 3, \"second\": 1}, {\"corr_id\": 8, \"first\": 3, \"second\": 3}, {\"corr_id\": 9, \"first\": 5, \"second\": 5}, {\"corr_id\": 10, \"first\": 6, \"second\": 6}, {\"corr_id\": 11, \"first\": 6, \"second\": 8}, {\"corr_id\": 12, \"first\": 6, \"second\": 9}, {\"corr_id\": 13, \"first\": 6, \"second\": 10}, {\"corr_id\": 14, \"first\": 8, \"second\": 6}, {\"corr_id\": 15, \"first\": 8, \"second\": 8}, {\"corr_id\": 16, \"first\": 8, \"second\": 9}, {\"corr_id\": 17, \"first\": 8, \"second\": 10}, {\"corr_id\": 18, \"first\": 9, \"second\": 6}, {\"corr_id\": 19, \"first\": 9, \"second\": 8}, {\"corr_id\": 20, \"first\": 9, \"second\": 9}, {\"corr_id\": 21, \"first\": 9, \"second\": 10}, {\"corr_id\": 22, \"first\": 10, \"second\": 6}, {\"corr_id\": 23, \"first\": 10, \"second\": 8}, {\"corr_id\": 24, \"first\": 10, \"second\": 9}, {\"corr_id\": 25, \"first\": 10, \"second\": 10}, {\"corr_id\": 26, \"first\": 11, \"second\": 1}, {\"corr_id\": 27, \"first\": 11, \"second\": 11}, {\"corr_id\": 28, \"first\": 13, \"second\": 13}, {\"corr_id\": 29, \"first\": 13, \"second\": 19}, {\"corr_id\": 30, \"first\": 14, \"second\": 2}, {\"corr_id\": 31, \"first\": 14, \"second\": 14}, {\"corr_id\": 32, \"first\": 16, \"second\": 16}, {\"corr_id\": 33, \"first\": 16, \"second\": 19}, {\"corr_id\": 34, \"first\": 16, \"second\": 20}, {\"corr_id\": 35, \"first\": 16, \"second\": 22}, {\"corr_id\": 36, \"first\": 17, \"second\": 17}, {\"corr_id\": 37, \"first\": 17, \"second\": 19}, {\"corr_id\": 38, \"first\": 17, \"second\": 22}, {\"corr_id\": 39, \"first\": 18, \"second\": 18}, {\"corr_id\": 40, \"first\": 18, \"second\": 24}, {\"corr_id\": 41, \"first\": 19, \"second\": 13}, {\"corr_id\": 42, \"first\": 19, \"second\": 16}, {\"corr_id\": 43, \"first\": 19, \"second\": 17}, {\"corr_id\": 44, \"first\": 19, \"second\": 19}, {\"corr_id\": 45, \"first\": 19, \"second\": 20}, {\"corr_id\": 46, \"first\": 19, \"second\": 21}, {\"corr_id\": 47, \"first\": 19, \"second\": 22}, {\"corr_id\": 48, \"first\": 19, \"second\": 23}, {\"corr_id\": 49, \"first\": 20, \"second\": 16}, {\"corr_id\": 50, \"first\": 20, \"second\": 19}, {\"corr_id\": 51, \"first\": 20, \"second\": 20}, {\"corr_id\": 52, \"first\": 20, \"second\": 22}, {\"corr_id\": 53, \"first\": 21, \"second\": 19}, {\"corr_id\": 54, \"first\": 21, \"second\": 21}, {\"corr_id\": 55, \"first\": 21, \"second\": 22}, {\"corr_id\": 56, \"first\": 21, \"second\": 24}, {\"corr_id\": 57, \"first\": 22, \"second\": 16}, {\"corr_id\": 58, \"first\": 22, \"second\": 17}, {\"corr_id\": 59, \"first\": 22, \"second\": 19}, {\"corr_id\": 60, \"first\": 22, \"second\": 20}, {\"corr_id\": 61, \"first\": 22, \"second\": 21}, {\"corr_id\": 62, \"first\": 22, \"second\": 22}, {\"corr_id\": 63, \"first\": 22, \"second\": 23}, {\"corr_id\": 64, \"first\": 23, \"second\": 19}, {\"corr_id\": 65, \"first\": 23, \"second\": 22}, {\"corr_id\": 66, \"first\": 23, \"second\": 23}, {\"corr_id\": 67, \"first\": 24, \"second\": 18}, {\"corr_id\": 68, \"first\": 24, \"second\": 21}, {\"corr_id\": 69, \"first\": 24, \"second\": 24}]},\n{\n\t \"nodes\": [\n        {\n            \"name\": \"Operating System. undefined\",\n            \"type\": \"Operating System\",\n            \"id\": 1,\n            \"type_id\": \"boomi.v1.operatingsystem\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 1,\n            \"alert_severity\": \"low\",\n            \"alert_severity_hint\": \"yellow\"\n        },\n        {\n            \"name\": \"Execution Manager. undefined\",\n            \"type\": \"Execution Manager\",\n            \"id\": 2,\n            \"type_id\": \"boomi.v1.executionmanager\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Resource Manager. undefined\",\n            \"type\": \"Resource Manager\",\n            \"id\": 3,\n            \"type_id\": \"boomi.v1.resourcemanager\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Scheduler. undefined\",\n            \"type\": \"Scheduler\",\n            \"id\": 4,\n            \"type_id\": \"boomi.v1.scheduler\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Process Summary Reporting Service. undefined\",\n            \"type\": \"Process Summary Reporting Service\",\n            \"id\": 5,\n            \"type_id\": \"boomi.v1.processsummaryreportingservice\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Message Queue Factory. undefined\",\n            \"type\": \"Message Queue Factory\",\n            \"id\": 6,\n            \"type_id\": \"boomi.v1.messagequeuefactory\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 3,\n            \"alert_severity\": \"severe\",\n            \"alert_severity_hint\": \"red\"\n        },\n        {\n            \"name\": \"Config. undefined\",\n            \"type\": \"Config\",\n            \"id\": 7,\n            \"type_id\": \"boomi.v1.config\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Acknowledgement track. undefined\",\n            \"type\": \"Queue Acknowledgement track\",\n            \"id\": 8,\n            \"type_id\": \"boomi.v1.queueacknowledgement-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Process track. undefined\",\n            \"type\": \"Queue Process track\",\n            \"id\": 9,\n            \"type_id\": \"boomi.v1.queueprocess-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Event track. undefined\",\n            \"type\": \"Queue Event track\",\n            \"id\": 10,\n            \"type_id\": \"boomi.v1.queueevent-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Message Poller Thread. undefined\",\n            \"type\": \"Message Poller Thread\",\n            \"id\": 11,\n            \"type_id\": \"boomi.v1.messagepollerthread\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"ActiveMQ. undefined\",\n            \"type\": \"ActiveMQ\",\n            \"id\": 12,\n            \"type_id\": \"boomi.v1.activemq\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"MoveRealtime\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 13,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 1,\n            \"alert_severity\": \"low\",\n            \"alert_severity_hint\": \"yellow\"\n        },\n        {\n            \"name\": \"MoveRealtime_LowFrequency\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 14,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"MoveRealtime_VeryLowFrequency\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 15,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 3,\n            \"alert_severity\": \"severe\",\n            \"alert_severity_hint\": \"red\"\n        },\n        {\n            \"name\": \"OS Swap. testmachine1\",\n            \"type\": \"OS Swap\",\n            \"id\": 16,\n            \"type_id\": \"booomi.telegraf.windowsserver.swap\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"OS System. testmachine1\",\n            \"type\": \"OS System\",\n            \"id\": 17,\n            \"type_id\": \"booomi.telegraf.windowsserver.system\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"C:\",\n            \"type\": \"OS Disks\",\n            \"id\": 18,\n            \"type_id\": \"booomi.telegraf.windowsserver.disk\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"D:\",\n            \"type\": \"OS Disks\",\n            \"id\": 19,\n            \"type_id\": \"booomi.telegraf.windowsserver.disk\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"OS Memory. testmachine1\",\n            \"type\": \"OS Memory\",\n            \"id\": 20,\n            \"type_id\": \"booomi.telegraf.windowsserver.mem\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"C:\",\n            \"type\": \"OS Disk IO\",\n            \"id\": 21,\n            \"type_id\": \"booomi.telegraf.windowsserver.diskio\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"D:\",\n            \"type\": \"OS Disk IO\",\n            \"id\": 22,\n            \"type_id\": \"booomi.telegraf.windowsserver.diskio\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"Ethernet\",\n            \"type\": \"Network adapters\",\n            \"id\": 23,\n            \"type_id\": \"booomi.telegraf.windowsserver.net\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"c:\\\\test\",\n            \"type\": \"Folder file count\",\n            \"id\": 24,\n            \"type_id\": \"booomi.telegraf.windowsserver.filecount\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        }\n    ]\n}\n]",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filterExpression": "source == ${GetAlertNodes:raw}",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "parser": "uql",
+          "refId": "A",
+          "root_selector": "$.correlations",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| scope \"correlations\"\n| where \"first\" in (${GetAlertNodes:raw})\n| project \"id\", \"source\"=\"first\",\"target\"=\"second\" ",
+          "url": "https://topology.eyer.ai/api/correlations",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "id",
+              "text": "id",
+              "type": "string"
+            },
+            {
+              "selector": "alert_severity_hint",
+              "text": "color",
+              "type": "string"
+            },
+            {
+              "selector": "name",
+              "text": "title",
+              "type": "string"
+            },
+            {
+              "selector": "type",
+              "text": "subtitle",
+              "type": "string"
+            }
+          ],
+          "data": "[{\"correlations\": [{\"corr_id\": 0, \"first\": 1, \"second\": 1}, {\"corr_id\": 1, \"first\": 1, \"second\": 2}, {\"corr_id\": 2, \"first\": 1, \"second\": 3}, {\"corr_id\": 3, \"first\": 1, \"second\": 11}, {\"corr_id\": 4, \"first\": 2, \"second\": 1}, {\"corr_id\": 5, \"first\": 2, \"second\": 2}, {\"corr_id\": 6, \"first\": 2, \"second\": 14}, {\"corr_id\": 7, \"first\": 3, \"second\": 1}, {\"corr_id\": 8, \"first\": 3, \"second\": 3}, {\"corr_id\": 9, \"first\": 5, \"second\": 5}, {\"corr_id\": 10, \"first\": 6, \"second\": 6}, {\"corr_id\": 11, \"first\": 6, \"second\": 8}, {\"corr_id\": 12, \"first\": 6, \"second\": 9}, {\"corr_id\": 13, \"first\": 6, \"second\": 10}, {\"corr_id\": 14, \"first\": 8, \"second\": 6}, {\"corr_id\": 15, \"first\": 8, \"second\": 8}, {\"corr_id\": 16, \"first\": 8, \"second\": 9}, {\"corr_id\": 17, \"first\": 8, \"second\": 10}, {\"corr_id\": 18, \"first\": 9, \"second\": 6}, {\"corr_id\": 19, \"first\": 9, \"second\": 8}, {\"corr_id\": 20, \"first\": 9, \"second\": 9}, {\"corr_id\": 21, \"first\": 9, \"second\": 10}, {\"corr_id\": 22, \"first\": 10, \"second\": 6}, {\"corr_id\": 23, \"first\": 10, \"second\": 8}, {\"corr_id\": 24, \"first\": 10, \"second\": 9}, {\"corr_id\": 25, \"first\": 10, \"second\": 10}, {\"corr_id\": 26, \"first\": 11, \"second\": 1}, {\"corr_id\": 27, \"first\": 11, \"second\": 11}, {\"corr_id\": 28, \"first\": 13, \"second\": 13}, {\"corr_id\": 29, \"first\": 13, \"second\": 19}, {\"corr_id\": 30, \"first\": 14, \"second\": 2}, {\"corr_id\": 31, \"first\": 14, \"second\": 14}, {\"corr_id\": 32, \"first\": 16, \"second\": 16}, {\"corr_id\": 33, \"first\": 16, \"second\": 19}, {\"corr_id\": 34, \"first\": 16, \"second\": 20}, {\"corr_id\": 35, \"first\": 16, \"second\": 22}, {\"corr_id\": 36, \"first\": 17, \"second\": 17}, {\"corr_id\": 37, \"first\": 17, \"second\": 19}, {\"corr_id\": 38, \"first\": 17, \"second\": 22}, {\"corr_id\": 39, \"first\": 18, \"second\": 18}, {\"corr_id\": 40, \"first\": 18, \"second\": 24}, {\"corr_id\": 41, \"first\": 19, \"second\": 13}, {\"corr_id\": 42, \"first\": 19, \"second\": 16}, {\"corr_id\": 43, \"first\": 19, \"second\": 17}, {\"corr_id\": 44, \"first\": 19, \"second\": 19}, {\"corr_id\": 45, \"first\": 19, \"second\": 20}, {\"corr_id\": 46, \"first\": 19, \"second\": 21}, {\"corr_id\": 47, \"first\": 19, \"second\": 22}, {\"corr_id\": 48, \"first\": 19, \"second\": 23}, {\"corr_id\": 49, \"first\": 20, \"second\": 16}, {\"corr_id\": 50, \"first\": 20, \"second\": 19}, {\"corr_id\": 51, \"first\": 20, \"second\": 20}, {\"corr_id\": 52, \"first\": 20, \"second\": 22}, {\"corr_id\": 53, \"first\": 21, \"second\": 19}, {\"corr_id\": 54, \"first\": 21, \"second\": 21}, {\"corr_id\": 55, \"first\": 21, \"second\": 22}, {\"corr_id\": 56, \"first\": 21, \"second\": 24}, {\"corr_id\": 57, \"first\": 22, \"second\": 16}, {\"corr_id\": 58, \"first\": 22, \"second\": 17}, {\"corr_id\": 59, \"first\": 22, \"second\": 19}, {\"corr_id\": 60, \"first\": 22, \"second\": 20}, {\"corr_id\": 61, \"first\": 22, \"second\": 21}, {\"corr_id\": 62, \"first\": 22, \"second\": 22}, {\"corr_id\": 63, \"first\": 22, \"second\": 23}, {\"corr_id\": 64, \"first\": 23, \"second\": 19}, {\"corr_id\": 65, \"first\": 23, \"second\": 22}, {\"corr_id\": 66, \"first\": 23, \"second\": 23}, {\"corr_id\": 67, \"first\": 24, \"second\": 18}, {\"corr_id\": 68, \"first\": 24, \"second\": 21}, {\"corr_id\": 69, \"first\": 24, \"second\": 24}]},\n{\n\t \"nodes\": [\n        {\n            \"name\": \"Operating System. undefined\",\n            \"type\": \"Operating System\",\n            \"id\": 1,\n            \"type_id\": \"boomi.v1.operatingsystem\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 1,\n            \"alert_severity\": \"low\",\n            \"alert_severity_hint\": \"yellow\"\n        },\n        {\n            \"name\": \"Execution Manager. undefined\",\n            \"type\": \"Execution Manager\",\n            \"id\": 2,\n            \"type_id\": \"boomi.v1.executionmanager\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Resource Manager. undefined\",\n            \"type\": \"Resource Manager\",\n            \"id\": 3,\n            \"type_id\": \"boomi.v1.resourcemanager\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Scheduler. undefined\",\n            \"type\": \"Scheduler\",\n            \"id\": 4,\n            \"type_id\": \"boomi.v1.scheduler\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Process Summary Reporting Service. undefined\",\n            \"type\": \"Process Summary Reporting Service\",\n            \"id\": 5,\n            \"type_id\": \"boomi.v1.processsummaryreportingservice\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Message Queue Factory. undefined\",\n            \"type\": \"Message Queue Factory\",\n            \"id\": 6,\n            \"type_id\": \"boomi.v1.messagequeuefactory\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 3,\n            \"alert_severity\": \"severe\",\n            \"alert_severity_hint\": \"red\"\n        },\n        {\n            \"name\": \"Config. undefined\",\n            \"type\": \"Config\",\n            \"id\": 7,\n            \"type_id\": \"boomi.v1.config\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Acknowledgement track. undefined\",\n            \"type\": \"Queue Acknowledgement track\",\n            \"id\": 8,\n            \"type_id\": \"boomi.v1.queueacknowledgement-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Process track. undefined\",\n            \"type\": \"Queue Process track\",\n            \"id\": 9,\n            \"type_id\": \"boomi.v1.queueprocess-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Event track. undefined\",\n            \"type\": \"Queue Event track\",\n            \"id\": 10,\n            \"type_id\": \"boomi.v1.queueevent-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Message Poller Thread. undefined\",\n            \"type\": \"Message Poller Thread\",\n            \"id\": 11,\n            \"type_id\": \"boomi.v1.messagepollerthread\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"ActiveMQ. undefined\",\n            \"type\": \"ActiveMQ\",\n            \"id\": 12,\n            \"type_id\": \"boomi.v1.activemq\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"MoveRealtime\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 13,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 1,\n            \"alert_severity\": \"low\",\n            \"alert_severity_hint\": \"yellow\"\n        },\n        {\n            \"name\": \"MoveRealtime_LowFrequency\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 14,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"MoveRealtime_VeryLowFrequency\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 15,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 3,\n            \"alert_severity\": \"severe\",\n            \"alert_severity_hint\": \"red\"\n        },\n        {\n            \"name\": \"OS Swap. testmachine1\",\n            \"type\": \"OS Swap\",\n            \"id\": 16,\n            \"type_id\": \"booomi.telegraf.windowsserver.swap\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"OS System. testmachine1\",\n            \"type\": \"OS System\",\n            \"id\": 17,\n            \"type_id\": \"booomi.telegraf.windowsserver.system\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"C:\",\n            \"type\": \"OS Disks\",\n            \"id\": 18,\n            \"type_id\": \"booomi.telegraf.windowsserver.disk\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"D:\",\n            \"type\": \"OS Disks\",\n            \"id\": 19,\n            \"type_id\": \"booomi.telegraf.windowsserver.disk\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"OS Memory. testmachine1\",\n            \"type\": \"OS Memory\",\n            \"id\": 20,\n            \"type_id\": \"booomi.telegraf.windowsserver.mem\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"C:\",\n            \"type\": \"OS Disk IO\",\n            \"id\": 21,\n            \"type_id\": \"booomi.telegraf.windowsserver.diskio\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"D:\",\n            \"type\": \"OS Disk IO\",\n            \"id\": 22,\n            \"type_id\": \"booomi.telegraf.windowsserver.diskio\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"Ethernet\",\n            \"type\": \"Network adapters\",\n            \"id\": 23,\n            \"type_id\": \"booomi.telegraf.windowsserver.net\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"c:\\\\test\",\n            \"type\": \"Folder file count\",\n            \"id\": 24,\n            \"type_id\": \"booomi.telegraf.windowsserver.filecount\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        }\n    ]\n}\n]",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filterExpression": "id in (${GuetAlertNodes:singlequote},${GuetAlertNodes:singlequote})",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "parser": "uql",
+          "refId": "B",
+          "root_selector": "$.nodes",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| scope \"nodes\"\n| where \"id\" in (${Combo:raw})\n| project \"id\", \"color\"=\"alert_severity_hint\",\"title\"=\"name\",\"subtitle\"=\"type\" ",
+          "url": "https://topology.eyer.ai/api/correlations",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Alert focused topology",
+      "type": "nodeGraph"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "mainup"
+            },
+            "properties": [
+              {
+                "id": "custom.fillBelowTo",
+                "value": "maindown"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "supup"
+            },
+            "properties": [
+              {
+                "id": "custom.fillBelowTo",
+                "value": "supdown"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "infup"
+            },
+            "properties": [
+              {
+                "id": "custom.fillOpacity",
+                "value": 30
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg"
+            },
+            "properties": [
+              {
+                "id": "custom.drawStyle",
+                "value": "points"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "v"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "transparent",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "c"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "transparent",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "mx"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "transparent",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "infup"
+            },
+            "properties": [
+              {
+                "id": "custom.fillBelowTo",
+                "value": "infdown"
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "infdown",
+                  "infup",
+                  "maindown",
+                  "mainup",
+                  "mx",
+                  "supdown",
+                  "supup",
+                  "avg"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "id": 58,
+      "maxPerRow": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.6.0-82015",
+      "repeat": "GetAlertMetricsAndName",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "from(bucket: \"environment_key/RP_DetectionCorridor\")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r._measurement == \"DetectionCorridor\")\n    |> filter(fn: (r) => r.stid == \"${GetAlertMetricsAndName:value}\" and r.nid == \"${GetAlertNodes}\")\n    |> filter(fn: (r) => \n        r[\"_field\"] == \"maindown\" or \n        r[\"_field\"] == \"mainup\" or \n        r[\"_field\"] == \"c\" or \n        r[\"_field\"] == \"v\" or \n        r[\"_field\"] == \"mx\" or \n        r[\"_field\"] == \"supdown\" or \n        r[\"_field\"] == \"supup\" or \n        r[\"_field\"] == \"infup\" or \n        r[\"_field\"] == \"infdown\"\n    )\n    |> group(columns: [\"_time\"])\n    |> reduce(\n        identity: {\n            _time: time(v: 0),\n            c: 0.0, \n            mx: 0.0, \n            v: 0.0,\n            maindown: 0.0, \n            mainup: 0.0, \n            supdown: 0.0, \n            supup: 0.0, \n            infup: 0.0, \n            infdown: 0.0\n        },\n        fn: (r, accumulator) => ({\n            _time: r._time,\n            c: if r._field == \"c\" then r._value else accumulator.c, \n            mx: if r._field == \"mx\" then r._value else accumulator.mx, \n            v: if r._field == \"v\" then r._value else accumulator.v,\n            maindown: if r._field == \"maindown\" then r._value else accumulator.maindown,\n            mainup: if r._field == \"mainup\" then r._value else accumulator.mainup,\n            supdown: if r._field == \"supdown\" then r._value else accumulator.supdown,\n            supup: if r._field == \"supup\" then r._value else accumulator.supup,\n            infdown: if r._field == \"infdown\" then r._value else accumulator.infdown,\n            infup: if r._field == \"infup\" then r._value else accumulator.infup\n        })\n    )\n    |> map(fn: (r) => ({ r with avg: r.v / r.c }))\n    |> group()",
+          "refId": "A"
+        }
+      ],
+      "title": "${GetAlertMetricsAndName:text}",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "5m",
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Alert metrics",
+        "multi": true,
+        "name": "GetAlertMetrics",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "id",
+                "text": "Id",
+                "type": "string"
+              }
+            ],
+            "computed_columns": [],
+            "filterExpression": "",
+            "filters": [],
+            "format": "table",
+            "json_options": {
+              "root_is_not_array": false
+            },
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "items.metrics",
+            "source": "url",
+            "type": "json",
+            "url": "https://boomi.eyer.ai/api/v2/anomalies/current/${GetAlertID}",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Alert metrics",
+        "multi": true,
+        "name": "GetAlertMetricsAndName",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "id",
+                "text": "__value",
+                "type": "string"
+              },
+              {
+                "selector": "aggregation",
+                "text": "agg",
+                "type": "string"
+              },
+              {
+                "selector": "name",
+                "text": "name",
+                "type": "string"
+              }
+            ],
+            "computed_columns": [
+              {
+                "selector": "agg + \" \" + name",
+                "text": "__text",
+                "type": "string"
+              }
+            ],
+            "filterExpression": "",
+            "filters": [],
+            "format": "table",
+            "json_options": {
+              "root_is_not_array": false
+            },
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "items.metrics",
+            "source": "url",
+            "type": "json",
+            "url": "https://boomi.eyer.ai/api/v2/anomalies/current/${GetAlertID}",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Alert metrics",
+        "multi": true,
+        "name": "GetAlertMetricsName",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "name",
+                "text": "Name",
+                "type": "string"
+              }
+            ],
+            "computed_columns": [],
+            "filterExpression": "",
+            "filters": [],
+            "format": "table",
+            "json_options": {
+              "root_is_not_array": false
+            },
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "items.metrics",
+            "source": "url",
+            "type": "json",
+            "url": "https://boomi.eyer.ai/api/v2/anomalies/current/${GetAlertID}",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Alert metrics",
+        "multi": true,
+        "name": "GetAlertNodesName",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "id",
+                "text": "nodeid",
+                "type": "string"
+              },
+              {
+                "selector": "name",
+                "text": "nodename",
+                "type": "string"
+              }
+            ],
+            "computed_columns": [
+              {
+                "selector": "nodeid + \" = \" + nodename",
+                "text": "__text",
+                "type": "string"
+              }
+            ],
+            "filterExpression": "",
+            "filters": [],
+            "format": "table",
+            "json_options": {
+              "root_is_not_array": false
+            },
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "items.node",
+            "source": "url",
+            "type": "json",
+            "url": "https://boomi.eyer.ai/api/v2/anomalies/current/${GetAlertID}",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "sort": 6,
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "includeAll": true,
+        "label": "Alert nodes",
+        "multi": true,
+        "name": "GetAlertNodes",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "id",
+                "text": "Id",
+                "type": "string"
+              }
+            ],
+            "computed_columns": [],
+            "filterExpression": "",
+            "filters": [],
+            "format": "table",
+            "json_options": {
+              "root_is_not_array": false
+            },
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "items.node",
+            "source": "url",
+            "type": "json",
+            "url": "https://boomi.eyer.ai/api/v2/anomalies/current/${GetAlertID}",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": true,
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "includeAll": false,
+        "label": "Alert Id",
+        "name": "GetAlertID",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "id",
+                "text": "__text",
+                "type": "string"
+              },
+              {
+                "selector": "alert_status",
+                "text": "__value",
+                "type": "number"
+              }
+            ],
+            "filterExpression": "",
+            "filters": [],
+            "format": "table",
+            "parser": "uql",
+            "refId": "variable",
+            "root_selector": "$",
+            "source": "url",
+            "type": "json",
+            "uql": "parse-json\n| where \"alert_status\" < 2\n| project \"id\"\n\n",
+            "url": "https://boomi.eyer.ai/api/v2/anomalies/current",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "hide": 2,
+        "includeAll": true,
+        "multi": true,
+        "name": "CorrelationSecondaryNodes",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "second",
+                "text": "destination",
+                "type": "string"
+              },
+              {
+                "selector": "first",
+                "text": "source",
+                "type": "string"
+              }
+            ],
+            "filterExpression": "source == \"$GetAlertNodes\"",
+            "filters": [],
+            "format": "table",
+            "parser": "uql",
+            "refId": "variable",
+            "root_selector": "$.correlations",
+            "source": "url",
+            "type": "json",
+            "uql": "parse-json\n| scope \"correlations\"\n| where \"first\" in (${GetAlertNodes:raw})\n| project \"second\"",
+            "url": "https://topology.eyer.ai/api/correlations",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": [
+            "$__all"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "hide": 2,
+        "includeAll": true,
+        "multi": true,
+        "name": "Combo",
+        "options": [
+          {
+            "selected": false,
+            "text": "25",
+            "value": "25"
+          },
+          {
+            "selected": false,
+            "text": "2",
+            "value": "2"
+          },
+          {
+            "selected": false,
+            "text": "3",
+            "value": "3"
+          },
+          {
+            "selected": false,
+            "text": "11",
+            "value": "11"
+          },
+          {
+            "selected": false,
+            "text": "15",
+            "value": "15"
+          },
+          {
+            "selected": false,
+            "text": "19",
+            "value": "19"
+          },
+          {
+            "selected": false,
+            "text": "20",
+            "value": "20"
+          },
+          {
+            "selected": false,
+            "text": "22",
+            "value": "22"
+          },
+          {
+            "selected": false,
+            "text": "27",
+            "value": "27"
+          },
+          {
+            "selected": false,
+            "text": "28",
+            "value": "28"
+          },
+          {
+            "selected": false,
+            "text": "29",
+            "value": "29"
+          },
+          {
+            "selected": false,
+            "text": "31",
+            "value": "31"
+          },
+          {
+            "selected": false,
+            "text": "32",
+            "value": "32"
+          },
+          {
+            "selected": false,
+            "text": "33",
+            "value": "33"
+          },
+          {
+            "selected": false,
+            "text": "35",
+            "value": "35"
+          },
+          {
+            "selected": false,
+            "text": "36",
+            "value": "36"
+          },
+          {
+            "selected": false,
+            "text": "37",
+            "value": "37"
+          },
+          {
+            "selected": false,
+            "text": "38",
+            "value": "38"
+          },
+          {
+            "selected": false,
+            "text": "39",
+            "value": "39"
+          },
+          {
+            "selected": false,
+            "text": "41",
+            "value": "41"
+          },
+          {
+            "selected": false,
+            "text": "42",
+            "value": "42"
+          },
+          {
+            "selected": false,
+            "text": "44",
+            "value": "44"
+          },
+          {
+            "selected": false,
+            "text": "45",
+            "value": "45"
+          },
+          {
+            "selected": false,
+            "text": "46",
+            "value": "46"
+          },
+          {
+            "selected": false,
+            "text": "47",
+            "value": "47"
+          },
+          {
+            "selected": false,
+            "text": "48",
+            "value": "48"
+          },
+          {
+            "selected": false,
+            "text": "50",
+            "value": "50"
+          },
+          {
+            "selected": false,
+            "text": "53",
+            "value": "53"
+          },
+          {
+            "selected": false,
+            "text": "62",
+            "value": "62"
+          },
+          {
+            "selected": false,
+            "text": "65",
+            "value": "65"
+          },
+          {
+            "selected": false,
+            "text": "66",
+            "value": "66"
+          },
+          {
+            "selected": false,
+            "text": "67",
+            "value": "67"
+          },
+          {
+            "selected": false,
+            "text": "68",
+            "value": "68"
+          },
+          {
+            "selected": false,
+            "text": "70",
+            "value": "70"
+          },
+          {
+            "selected": false,
+            "text": "71",
+            "value": "71"
+          },
+          {
+            "selected": false,
+            "text": "72",
+            "value": "72"
+          },
+          {
+            "selected": false,
+            "text": "73",
+            "value": "73"
+          },
+          {
+            "selected": false,
+            "text": "74",
+            "value": "74"
+          },
+          {
+            "selected": false,
+            "text": "76",
+            "value": "76"
+          },
+          {
+            "selected": false,
+            "text": "77",
+            "value": "77"
+          },
+          {
+            "selected": false,
+            "text": "80",
+            "value": "80"
+          },
+          {
+            "selected": false,
+            "text": "82",
+            "value": "82"
+          },
+          {
+            "selected": false,
+            "text": "85",
+            "value": "85"
+          },
+          {
+            "selected": false,
+            "text": "86",
+            "value": "86"
+          },
+          {
+            "selected": false,
+            "text": "87",
+            "value": "87"
+          },
+          {
+            "selected": false,
+            "text": "88",
+            "value": "88"
+          },
+          {
+            "selected": false,
+            "text": "89",
+            "value": "89"
+          },
+          {
+            "selected": false,
+            "text": "90",
+            "value": "90"
+          },
+          {
+            "selected": false,
+            "text": "91",
+            "value": "91"
+          },
+          {
+            "selected": false,
+            "text": "94",
+            "value": "94"
+          },
+          {
+            "selected": false,
+            "text": "95",
+            "value": "95"
+          },
+          {
+            "selected": false,
+            "text": "97",
+            "value": "97"
+          }
+        ],
+        "query": "${GetAlertNodes:raw}, ${CorrelationSecondaryNodes:raw}",
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Alert investigation flow",
+  "uid": "decuaors2vldsf",
+  "version": 15,
+  "weekStart": ""
+}
