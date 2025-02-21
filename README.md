@@ -1,4 +1,4 @@
-*** Grafana generic templates for Eyer ***
+# *** Grafana generic templates for Eyer ***
 1. Make sure you have your credentials available (apiTokenRead, environment id)
 2. Replace "apiTokenRead" in the template with your token
 3. Replace "environment_key" in the template with your environment id
