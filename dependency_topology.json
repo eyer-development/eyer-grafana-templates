@@ -1,0 +1,333 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_YESOREYERAM-INFINITY-DATASOURCE",
+      "label": "yesoreyeram-infinity-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "yesoreyeram-infinity-datasource",
+      "pluginName": "Infinity"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.6.0-84214"
+    },
+    {
+      "type": "panel",
+      "id": "nodeGraph",
+      "name": "Node Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "yesoreyeram-infinity-datasource",
+      "name": "Infinity",
+      "version": "2.11.1"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "edges": {},
+        "nodes": {},
+        "zoomMode": "cooperative"
+      },
+      "pluginVersion": "11.6.0-84214",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "id",
+              "text": "id",
+              "type": "string"
+            },
+            {
+              "selector": "first",
+              "text": "source",
+              "type": "string"
+            },
+            {
+              "selector": "second",
+              "text": "target",
+              "type": "string"
+            }
+          ],
+          "data": "[{\"correlations\": [{\"corr_id\": 0, \"first\": 1, \"second\": 1}, {\"corr_id\": 1, \"first\": 1, \"second\": 2}, {\"corr_id\": 2, \"first\": 1, \"second\": 3}, {\"corr_id\": 3, \"first\": 1, \"second\": 11}, {\"corr_id\": 4, \"first\": 2, \"second\": 1}, {\"corr_id\": 5, \"first\": 2, \"second\": 2}, {\"corr_id\": 6, \"first\": 2, \"second\": 14}, {\"corr_id\": 7, \"first\": 3, \"second\": 1}, {\"corr_id\": 8, \"first\": 3, \"second\": 3}, {\"corr_id\": 9, \"first\": 5, \"second\": 5}, {\"corr_id\": 10, \"first\": 6, \"second\": 6}, {\"corr_id\": 11, \"first\": 6, \"second\": 8}, {\"corr_id\": 12, \"first\": 6, \"second\": 9}, {\"corr_id\": 13, \"first\": 6, \"second\": 10}, {\"corr_id\": 14, \"first\": 8, \"second\": 6}, {\"corr_id\": 15, \"first\": 8, \"second\": 8}, {\"corr_id\": 16, \"first\": 8, \"second\": 9}, {\"corr_id\": 17, \"first\": 8, \"second\": 10}, {\"corr_id\": 18, \"first\": 9, \"second\": 6}, {\"corr_id\": 19, \"first\": 9, \"second\": 8}, {\"corr_id\": 20, \"first\": 9, \"second\": 9}, {\"corr_id\": 21, \"first\": 9, \"second\": 10}, {\"corr_id\": 22, \"first\": 10, \"second\": 6}, {\"corr_id\": 23, \"first\": 10, \"second\": 8}, {\"corr_id\": 24, \"first\": 10, \"second\": 9}, {\"corr_id\": 25, \"first\": 10, \"second\": 10}, {\"corr_id\": 26, \"first\": 11, \"second\": 1}, {\"corr_id\": 27, \"first\": 11, \"second\": 11}, {\"corr_id\": 28, \"first\": 13, \"second\": 13}, {\"corr_id\": 29, \"first\": 13, \"second\": 19}, {\"corr_id\": 30, \"first\": 14, \"second\": 2}, {\"corr_id\": 31, \"first\": 14, \"second\": 14}, {\"corr_id\": 32, \"first\": 16, \"second\": 16}, {\"corr_id\": 33, \"first\": 16, \"second\": 19}, {\"corr_id\": 34, \"first\": 16, \"second\": 20}, {\"corr_id\": 35, \"first\": 16, \"second\": 22}, {\"corr_id\": 36, \"first\": 17, \"second\": 17}, {\"corr_id\": 37, \"first\": 17, \"second\": 19}, {\"corr_id\": 38, \"first\": 17, \"second\": 22}, {\"corr_id\": 39, \"first\": 18, \"second\": 18}, {\"corr_id\": 40, \"first\": 18, \"second\": 24}, {\"corr_id\": 41, \"first\": 19, \"second\": 13}, {\"corr_id\": 42, \"first\": 19, \"second\": 16}, {\"corr_id\": 43, \"first\": 19, \"second\": 17}, {\"corr_id\": 44, \"first\": 19, \"second\": 19}, {\"corr_id\": 45, \"first\": 19, \"second\": 20}, {\"corr_id\": 46, \"first\": 19, \"second\": 21}, {\"corr_id\": 47, \"first\": 19, \"second\": 22}, {\"corr_id\": 48, \"first\": 19, \"second\": 23}, {\"corr_id\": 49, \"first\": 20, \"second\": 16}, {\"corr_id\": 50, \"first\": 20, \"second\": 19}, {\"corr_id\": 51, \"first\": 20, \"second\": 20}, {\"corr_id\": 52, \"first\": 20, \"second\": 22}, {\"corr_id\": 53, \"first\": 21, \"second\": 19}, {\"corr_id\": 54, \"first\": 21, \"second\": 21}, {\"corr_id\": 55, \"first\": 21, \"second\": 22}, {\"corr_id\": 56, \"first\": 21, \"second\": 24}, {\"corr_id\": 57, \"first\": 22, \"second\": 16}, {\"corr_id\": 58, \"first\": 22, \"second\": 17}, {\"corr_id\": 59, \"first\": 22, \"second\": 19}, {\"corr_id\": 60, \"first\": 22, \"second\": 20}, {\"corr_id\": 61, \"first\": 22, \"second\": 21}, {\"corr_id\": 62, \"first\": 22, \"second\": 22}, {\"corr_id\": 63, \"first\": 22, \"second\": 23}, {\"corr_id\": 64, \"first\": 23, \"second\": 19}, {\"corr_id\": 65, \"first\": 23, \"second\": 22}, {\"corr_id\": 66, \"first\": 23, \"second\": 23}, {\"corr_id\": 67, \"first\": 24, \"second\": 18}, {\"corr_id\": 68, \"first\": 24, \"second\": 21}, {\"corr_id\": 69, \"first\": 24, \"second\": 24}]},\n{\n\t \"nodes\": [\n        {\n            \"name\": \"Operating System. undefined\",\n            \"type\": \"Operating System\",\n            \"id\": 1,\n            \"type_id\": \"boomi.v1.operatingsystem\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 1,\n            \"alert_severity\": \"low\",\n            \"alert_severity_hint\": \"yellow\"\n        },\n        {\n            \"name\": \"Execution Manager. undefined\",\n            \"type\": \"Execution Manager\",\n            \"id\": 2,\n            \"type_id\": \"boomi.v1.executionmanager\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Resource Manager. undefined\",\n            \"type\": \"Resource Manager\",\n            \"id\": 3,\n            \"type_id\": \"boomi.v1.resourcemanager\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Scheduler. undefined\",\n            \"type\": \"Scheduler\",\n            \"id\": 4,\n            \"type_id\": \"boomi.v1.scheduler\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Process Summary Reporting Service. undefined\",\n            \"type\": \"Process Summary Reporting Service\",\n            \"id\": 5,\n            \"type_id\": \"boomi.v1.processsummaryreportingservice\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Message Queue Factory. undefined\",\n            \"type\": \"Message Queue Factory\",\n            \"id\": 6,\n            \"type_id\": \"boomi.v1.messagequeuefactory\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 3,\n            \"alert_severity\": \"severe\",\n            \"alert_severity_hint\": \"red\"\n        },\n        {\n            \"name\": \"Config. undefined\",\n            \"type\": \"Config\",\n            \"id\": 7,\n            \"type_id\": \"boomi.v1.config\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Acknowledgement track. undefined\",\n            \"type\": \"Queue Acknowledgement track\",\n            \"id\": 8,\n            \"type_id\": \"boomi.v1.queueacknowledgement-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Process track. undefined\",\n            \"type\": \"Queue Process track\",\n            \"id\": 9,\n            \"type_id\": \"boomi.v1.queueprocess-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Event track. undefined\",\n            \"type\": \"Queue Event track\",\n            \"id\": 10,\n            \"type_id\": \"boomi.v1.queueevent-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Message Poller Thread. undefined\",\n            \"type\": \"Message Poller Thread\",\n            \"id\": 11,\n            \"type_id\": \"boomi.v1.messagepollerthread\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"ActiveMQ. undefined\",\n            \"type\": \"ActiveMQ\",\n            \"id\": 12,\n            \"type_id\": \"boomi.v1.activemq\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"MoveRealtime\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 13,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 1,\n            \"alert_severity\": \"low\",\n            \"alert_severity_hint\": \"yellow\"\n        },\n        {\n            \"name\": \"MoveRealtime_LowFrequency\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 14,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"MoveRealtime_VeryLowFrequency\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 15,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 3,\n            \"alert_severity\": \"severe\",\n            \"alert_severity_hint\": \"red\"\n        },\n        {\n            \"name\": \"OS Swap. testmachine1\",\n            \"type\": \"OS Swap\",\n            \"id\": 16,\n            \"type_id\": \"booomi.telegraf.windowsserver.swap\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"OS System. testmachine1\",\n            \"type\": \"OS System\",\n            \"id\": 17,\n            \"type_id\": \"booomi.telegraf.windowsserver.system\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"C:\",\n            \"type\": \"OS Disks\",\n            \"id\": 18,\n            \"type_id\": \"booomi.telegraf.windowsserver.disk\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"D:\",\n            \"type\": \"OS Disks\",\n            \"id\": 19,\n            \"type_id\": \"booomi.telegraf.windowsserver.disk\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"OS Memory. testmachine1\",\n            \"type\": \"OS Memory\",\n            \"id\": 20,\n            \"type_id\": \"booomi.telegraf.windowsserver.mem\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"C:\",\n            \"type\": \"OS Disk IO\",\n            \"id\": 21,\n            \"type_id\": \"booomi.telegraf.windowsserver.diskio\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"D:\",\n            \"type\": \"OS Disk IO\",\n            \"id\": 22,\n            \"type_id\": \"booomi.telegraf.windowsserver.diskio\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"Ethernet\",\n            \"type\": \"Network adapters\",\n            \"id\": 23,\n            \"type_id\": \"booomi.telegraf.windowsserver.net\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"c:\\\\test\",\n            \"type\": \"Folder file count\",\n            \"id\": 24,\n            \"type_id\": \"booomi.telegraf.windowsserver.filecount\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        }\n    ]\n}\n]",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filterExpression": "source == ${GetAlertNodes:raw}",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "parser": "uql",
+          "refId": "A",
+          "root_selector": "$.correlations",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| scope \"correlations\"\n| where \"first\" in (${SelectNode:raw})\n| project \"id\", \"source\"=\"first\",\"target\"=\"second\" ",
+          "url": "https://topology.eyer.ai/api/correlations",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "id",
+              "text": "id",
+              "type": "string"
+            },
+            {
+              "selector": "alert_severity_hint",
+              "text": "color",
+              "type": "string"
+            },
+            {
+              "selector": "name",
+              "text": "title",
+              "type": "string"
+            },
+            {
+              "selector": "type",
+              "text": "subtitle",
+              "type": "string"
+            }
+          ],
+          "data": "[{\"correlations\": [{\"corr_id\": 0, \"first\": 1, \"second\": 1}, {\"corr_id\": 1, \"first\": 1, \"second\": 2}, {\"corr_id\": 2, \"first\": 1, \"second\": 3}, {\"corr_id\": 3, \"first\": 1, \"second\": 11}, {\"corr_id\": 4, \"first\": 2, \"second\": 1}, {\"corr_id\": 5, \"first\": 2, \"second\": 2}, {\"corr_id\": 6, \"first\": 2, \"second\": 14}, {\"corr_id\": 7, \"first\": 3, \"second\": 1}, {\"corr_id\": 8, \"first\": 3, \"second\": 3}, {\"corr_id\": 9, \"first\": 5, \"second\": 5}, {\"corr_id\": 10, \"first\": 6, \"second\": 6}, {\"corr_id\": 11, \"first\": 6, \"second\": 8}, {\"corr_id\": 12, \"first\": 6, \"second\": 9}, {\"corr_id\": 13, \"first\": 6, \"second\": 10}, {\"corr_id\": 14, \"first\": 8, \"second\": 6}, {\"corr_id\": 15, \"first\": 8, \"second\": 8}, {\"corr_id\": 16, \"first\": 8, \"second\": 9}, {\"corr_id\": 17, \"first\": 8, \"second\": 10}, {\"corr_id\": 18, \"first\": 9, \"second\": 6}, {\"corr_id\": 19, \"first\": 9, \"second\": 8}, {\"corr_id\": 20, \"first\": 9, \"second\": 9}, {\"corr_id\": 21, \"first\": 9, \"second\": 10}, {\"corr_id\": 22, \"first\": 10, \"second\": 6}, {\"corr_id\": 23, \"first\": 10, \"second\": 8}, {\"corr_id\": 24, \"first\": 10, \"second\": 9}, {\"corr_id\": 25, \"first\": 10, \"second\": 10}, {\"corr_id\": 26, \"first\": 11, \"second\": 1}, {\"corr_id\": 27, \"first\": 11, \"second\": 11}, {\"corr_id\": 28, \"first\": 13, \"second\": 13}, {\"corr_id\": 29, \"first\": 13, \"second\": 19}, {\"corr_id\": 30, \"first\": 14, \"second\": 2}, {\"corr_id\": 31, \"first\": 14, \"second\": 14}, {\"corr_id\": 32, \"first\": 16, \"second\": 16}, {\"corr_id\": 33, \"first\": 16, \"second\": 19}, {\"corr_id\": 34, \"first\": 16, \"second\": 20}, {\"corr_id\": 35, \"first\": 16, \"second\": 22}, {\"corr_id\": 36, \"first\": 17, \"second\": 17}, {\"corr_id\": 37, \"first\": 17, \"second\": 19}, {\"corr_id\": 38, \"first\": 17, \"second\": 22}, {\"corr_id\": 39, \"first\": 18, \"second\": 18}, {\"corr_id\": 40, \"first\": 18, \"second\": 24}, {\"corr_id\": 41, \"first\": 19, \"second\": 13}, {\"corr_id\": 42, \"first\": 19, \"second\": 16}, {\"corr_id\": 43, \"first\": 19, \"second\": 17}, {\"corr_id\": 44, \"first\": 19, \"second\": 19}, {\"corr_id\": 45, \"first\": 19, \"second\": 20}, {\"corr_id\": 46, \"first\": 19, \"second\": 21}, {\"corr_id\": 47, \"first\": 19, \"second\": 22}, {\"corr_id\": 48, \"first\": 19, \"second\": 23}, {\"corr_id\": 49, \"first\": 20, \"second\": 16}, {\"corr_id\": 50, \"first\": 20, \"second\": 19}, {\"corr_id\": 51, \"first\": 20, \"second\": 20}, {\"corr_id\": 52, \"first\": 20, \"second\": 22}, {\"corr_id\": 53, \"first\": 21, \"second\": 19}, {\"corr_id\": 54, \"first\": 21, \"second\": 21}, {\"corr_id\": 55, \"first\": 21, \"second\": 22}, {\"corr_id\": 56, \"first\": 21, \"second\": 24}, {\"corr_id\": 57, \"first\": 22, \"second\": 16}, {\"corr_id\": 58, \"first\": 22, \"second\": 17}, {\"corr_id\": 59, \"first\": 22, \"second\": 19}, {\"corr_id\": 60, \"first\": 22, \"second\": 20}, {\"corr_id\": 61, \"first\": 22, \"second\": 21}, {\"corr_id\": 62, \"first\": 22, \"second\": 22}, {\"corr_id\": 63, \"first\": 22, \"second\": 23}, {\"corr_id\": 64, \"first\": 23, \"second\": 19}, {\"corr_id\": 65, \"first\": 23, \"second\": 22}, {\"corr_id\": 66, \"first\": 23, \"second\": 23}, {\"corr_id\": 67, \"first\": 24, \"second\": 18}, {\"corr_id\": 68, \"first\": 24, \"second\": 21}, {\"corr_id\": 69, \"first\": 24, \"second\": 24}]},\n{\n\t \"nodes\": [\n        {\n            \"name\": \"Operating System. undefined\",\n            \"type\": \"Operating System\",\n            \"id\": 1,\n            \"type_id\": \"boomi.v1.operatingsystem\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 1,\n            \"alert_severity\": \"low\",\n            \"alert_severity_hint\": \"yellow\"\n        },\n        {\n            \"name\": \"Execution Manager. undefined\",\n            \"type\": \"Execution Manager\",\n            \"id\": 2,\n            \"type_id\": \"boomi.v1.executionmanager\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Resource Manager. undefined\",\n            \"type\": \"Resource Manager\",\n            \"id\": 3,\n            \"type_id\": \"boomi.v1.resourcemanager\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Scheduler. undefined\",\n            \"type\": \"Scheduler\",\n            \"id\": 4,\n            \"type_id\": \"boomi.v1.scheduler\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Process Summary Reporting Service. undefined\",\n            \"type\": \"Process Summary Reporting Service\",\n            \"id\": 5,\n            \"type_id\": \"boomi.v1.processsummaryreportingservice\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Message Queue Factory. undefined\",\n            \"type\": \"Message Queue Factory\",\n            \"id\": 6,\n            \"type_id\": \"boomi.v1.messagequeuefactory\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 3,\n            \"alert_severity\": \"severe\",\n            \"alert_severity_hint\": \"red\"\n        },\n        {\n            \"name\": \"Config. undefined\",\n            \"type\": \"Config\",\n            \"id\": 7,\n            \"type_id\": \"boomi.v1.config\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Acknowledgement track. undefined\",\n            \"type\": \"Queue Acknowledgement track\",\n            \"id\": 8,\n            \"type_id\": \"boomi.v1.queueacknowledgement-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Process track. undefined\",\n            \"type\": \"Queue Process track\",\n            \"id\": 9,\n            \"type_id\": \"boomi.v1.queueprocess-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Queue Event track. undefined\",\n            \"type\": \"Queue Event track\",\n            \"id\": 10,\n            \"type_id\": \"boomi.v1.queueevent-track\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"Message Poller Thread. undefined\",\n            \"type\": \"Message Poller Thread\",\n            \"id\": 11,\n            \"type_id\": \"boomi.v1.messagepollerthread\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"ActiveMQ. undefined\",\n            \"type\": \"ActiveMQ\",\n            \"id\": 12,\n            \"type_id\": \"boomi.v1.activemq\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.v1\",\n            \"system_type_id\": \"booomi.telegraf.v1\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"MoveRealtime\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 13,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 1,\n            \"alert_severity\": \"low\",\n            \"alert_severity_hint\": \"yellow\"\n        },\n        {\n            \"name\": \"MoveRealtime_LowFrequency\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 14,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"MoveRealtime_VeryLowFrequency\",\n            \"type\": \"Boomi Low Latency Process\",\n            \"id\": 15,\n            \"type_id\": \"booomi.telegraf.boomilowlatencyprocesses.v1.process\",\n            \"system\": null,\n            \"system_type\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"system_type_id\": \"booomi.telegraf.boomilowlatencyprocesses\",\n            \"alert_severity_num\": 3,\n            \"alert_severity\": \"severe\",\n            \"alert_severity_hint\": \"red\"\n        },\n        {\n            \"name\": \"OS Swap. testmachine1\",\n            \"type\": \"OS Swap\",\n            \"id\": 16,\n            \"type_id\": \"booomi.telegraf.windowsserver.swap\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"OS System. testmachine1\",\n            \"type\": \"OS System\",\n            \"id\": 17,\n            \"type_id\": \"booomi.telegraf.windowsserver.system\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"C:\",\n            \"type\": \"OS Disks\",\n            \"id\": 18,\n            \"type_id\": \"booomi.telegraf.windowsserver.disk\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"D:\",\n            \"type\": \"OS Disks\",\n            \"id\": 19,\n            \"type_id\": \"booomi.telegraf.windowsserver.disk\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"OS Memory. testmachine1\",\n            \"type\": \"OS Memory\",\n            \"id\": 20,\n            \"type_id\": \"booomi.telegraf.windowsserver.mem\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"C:\",\n            \"type\": \"OS Disk IO\",\n            \"id\": 21,\n            \"type_id\": \"booomi.telegraf.windowsserver.diskio\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"D:\",\n            \"type\": \"OS Disk IO\",\n            \"id\": 22,\n            \"type_id\": \"booomi.telegraf.windowsserver.diskio\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 2,\n            \"alert_severity\": \"medium\",\n            \"alert_severity_hint\": \"orange\"\n        },\n        {\n            \"name\": \"Ethernet\",\n            \"type\": \"Network adapters\",\n            \"id\": 23,\n            \"type_id\": \"booomi.telegraf.windowsserver.net\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        },\n        {\n            \"name\": \"c:\\\\test\",\n            \"type\": \"Folder file count\",\n            \"id\": 24,\n            \"type_id\": \"booomi.telegraf.windowsserver.filecount\",\n            \"system\": \"testmachine1\",\n            \"system_type\": \"booomi.telegraf.windowsserver\",\n            \"system_type_id\": \"booomi.telegraf.windowsserver\",\n            \"alert_severity_num\": 0,\n            \"alert_severity\": \"no_anomalies\",\n            \"alert_severity_hint\": \"grey\"\n        }\n    ]\n}\n]",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filterExpression": "id in (${GuetAlertNodes:singlequote},${GuetAlertNodes:singlequote})",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "parser": "uql",
+          "refId": "B",
+          "root_selector": "$.nodes",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| scope \"nodes\"\n| where \"id\" in (${Combo:raw})\n| project \"id\", \"color\"=\"alert_severity_hint\",\"title\"=\"name\",\"subtitle\"=\"type\" ",
+          "url": "https://topology.eyer.ai/api/correlations",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Selected node correlations",
+      "type": "nodeGraph"
+    }
+  ],
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "name": "SelectNode",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "node_id",
+                "text": "__value",
+                "type": "string"
+              },
+              {
+                "selector": "name",
+                "text": "__text",
+                "type": "string"
+              }
+            ],
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "",
+            "source": "url",
+            "type": "json",
+            "url": "https://topology.eyer.ai/api/definitions/nodes",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": [
+            "$__all"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "hide": 2,
+        "includeAll": true,
+        "multi": true,
+        "name": "Combo",
+        "options": [
+          {
+            "selected": false,
+            "text": "106",
+            "value": "106"
+          },
+          {
+            "selected": false,
+            "text": "3",
+            "value": "3"
+          },
+          {
+            "selected": false,
+            "text": "28",
+            "value": "28"
+          },
+          {
+            "selected": false,
+            "text": "105",
+            "value": "105"
+          },
+          {
+            "selected": false,
+            "text": "110",
+            "value": "110"
+          },
+          {
+            "selected": false,
+            "text": "112",
+            "value": "112"
+          }
+        ],
+        "query": "${SelectNode:raw}, ${CorrelationSecondaryNodes:raw}",
+        "type": "custom"
+      },
+      {
+        "allowCustomValue": true,
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "hide": 2,
+        "includeAll": true,
+        "multi": true,
+        "name": "CorrelationSecondaryNodes",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [],
+            "filters": [],
+            "format": "table",
+            "parser": "uql",
+            "refId": "variable",
+            "root_selector": "",
+            "source": "url",
+            "type": "json",
+            "uql": "parse-json\n| scope \"correlations\"\n| where \"first\" in (${SelectNode:raw})\n| project \"second\"",
+            "url": "https://topology.eyer.ai/api/correlations",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Dependency Topology",
+  "uid": "eefsofakbf7r4e",
+  "version": 10,
+  "weekStart": ""
+}
