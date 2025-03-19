@@ -1,55 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_YESOREYERAM-INFINITY-DATASOURCE",
-      "label": "yesoreyeram-infinity-datasource",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "yesoreyeram-infinity-datasource",
-      "pluginName": "Infinity"
-    },
-    {
-      "name": "DS_INFLUXDB",
-      "label": "influxdb",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "11.6.0-82840"
-    },
-    {
-      "type": "datasource",
-      "id": "influxdb",
-      "name": "InfluxDB",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "yesoreyeram-infinity-datasource",
-      "name": "Infinity",
-      "version": "2.11.1"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -69,14 +18,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
+  "id": 120,
   "links": [],
   "liveNow": true,
   "panels": [
     {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
-        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        "uid": "edls7aoqomqkga"
       },
       "fieldConfig": {
         "defaults": {
@@ -154,7 +103,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.6.0-82840",
+      "pluginVersion": "11.6.0-84214",
       "targets": [
         {
           "columns": [
@@ -166,7 +115,7 @@
           ],
           "datasource": {
             "type": "yesoreyeram-infinity-datasource",
-            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+            "uid": "edls7aoqomqkga"
           },
           "filters": [],
           "format": "table",
@@ -196,7 +145,7 @@
     {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
-        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        "uid": "edls7aoqomqkga"
       },
       "fieldConfig": {
         "defaults": {
@@ -274,7 +223,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.6.0-82840",
+      "pluginVersion": "11.6.0-84214",
       "targets": [
         {
           "columns": [
@@ -286,7 +235,7 @@
           ],
           "datasource": {
             "type": "yesoreyeram-infinity-datasource",
-            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+            "uid": "edls7aoqomqkga"
           },
           "filters": [],
           "format": "table",
@@ -316,7 +265,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
+        "uid": "cdlnxrhdc8feob"
       },
       "description": "",
       "fieldConfig": {
@@ -627,9 +576,9 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
+            "uid": "cdlnxrhdc8feob"
           },
-          "query": "import \"strings\"\n\nfrom(bucket: \"environment_key/RP_DetectionCorridor\")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r._measurement == \"DetectionCorridor\")\n    |> filter(fn: (r) => r.stid == \"${GetAlertMetricsAndName:value}\" and r.nid == \"${GetNodes:value}\")\n    |> filter(fn: (r) => \n        r[\"_field\"] == \"maindown\" or \n        r[\"_field\"] == \"mainup\" or \n        r[\"_field\"] == \"c\" or \n        r[\"_field\"] == \"v\" or \n        r[\"_field\"] == \"mx\" or \n        r[\"_field\"] == \"supdown\" or \n        r[\"_field\"] == \"supup\" or \n        r[\"_field\"] == \"infup\" or \n        r[\"_field\"] == \"infdown\"\n    )\n    |> group(columns: [\"_time\"])\n    |> reduce(\n        identity: {\n            _time: time(v: 0),\n            c: 0.0, \n            mx: 0.0, \n            v: 0.0,\n            maindown: 0.0, \n            mainup: 0.0, \n            supdown: 0.0, \n            supup: 0.0, \n            infup: 0.0, \n            infdown: 0.0\n        },\n        fn: (r, accumulator) => ({\n            _time: r._time,\n            c: if r._field == \"c\" then r._value else accumulator.c, \n            mx: if r._field == \"mx\" then r._value else accumulator.mx, \n            v: if r._field == \"v\" then r._value else accumulator.v,\n            maindown: if r._field == \"maindown\" then r._value else accumulator.maindown,\n            mainup: if r._field == \"mainup\" then r._value else accumulator.mainup,\n            supdown: if r._field == \"supdown\" then r._value else accumulator.supdown,\n            supup: if r._field == \"supup\" then r._value else accumulator.supup,\n            infdown: if r._field == \"infdown\" then r._value else accumulator.infdown,\n            infup: if r._field == \"infup\" then r._value else accumulator.infup\n        })\n    )\n    |> map(fn: (r) => ({ r with avg: r.v / r.c }))\n   |> map(fn: (r) => ({ r with display: if strings.hasPrefix(v:\"${GetAlertMetricsAndName:text}\",prefix:\"avg\") then r.avg else if strings.hasPrefix(v:\"${GetAlertMetricsAndName:text}\",prefix:\"max\") then r.mx else r.v }))\n    |> window(every: if strings.hasPrefix(v:\"${GetAlertMetricsAndName:text}\",prefix:\"sum\") then 15m else 1m, period: 1m)\n    |> group()",
+          "query": "import \"strings\"\n\nfrom(bucket: \"environment_id/RP_DetectionCorridor\")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r._measurement == \"DetectionCorridor\")\n    |> filter(fn: (r) => r.stid == \"${GetAlertMetricsAndName:value}\" and r.nid == \"${GetNodes:value}\")\n    |> filter(fn: (r) => \n        r[\"_field\"] == \"maindown\" or \n        r[\"_field\"] == \"mainup\" or \n        r[\"_field\"] == \"c\" or \n        r[\"_field\"] == \"v\" or \n        r[\"_field\"] == \"mx\" or \n        r[\"_field\"] == \"supdown\" or \n        r[\"_field\"] == \"supup\" or \n        r[\"_field\"] == \"infup\" or \n        r[\"_field\"] == \"infdown\"\n    )\n    |> group(columns: [\"_time\"])\n    |> reduce(\n        identity: {\n            _time: time(v: 0),\n            c: 0.0, \n            mx: 0.0, \n            v: 0.0,\n            maindown: 0.0, \n            mainup: 0.0, \n            supdown: 0.0, \n            supup: 0.0, \n            infup: 0.0, \n            infdown: 0.0\n        },\n        fn: (r, accumulator) => ({\n            _time: r._time,\n            c: if r._field == \"c\" then r._value else accumulator.c, \n            mx: if r._field == \"mx\" then r._value else accumulator.mx, \n            v: if r._field == \"v\" then r._value else accumulator.v,\n            maindown: if r._field == \"maindown\" then r._value else accumulator.maindown,\n            mainup: if r._field == \"mainup\" then r._value else accumulator.mainup,\n            supdown: if r._field == \"supdown\" then r._value else accumulator.supdown,\n            supup: if r._field == \"supup\" then r._value else accumulator.supup,\n            infdown: if r._field == \"infdown\" then r._value else accumulator.infdown,\n            infup: if r._field == \"infup\" then r._value else accumulator.infup\n        })\n    )\n    |> map(fn: (r) => ({ r with avg: r.v / r.c }))\n   |> map(fn: (r) => ({ r with display: if strings.hasPrefix(v:\"${GetAlertMetricsAndName:text}\",prefix:\"avg\") then r.avg else if strings.hasPrefix(v:\"${GetAlertMetricsAndName:text}\",prefix:\"max\") then r.mx else r.v }))\n    |> window(every: if strings.hasPrefix(v:\"${GetAlertMetricsAndName:text}\",prefix:\"sum\") then 15m else 1m, period: 1m)\n    |> group()",
           "refId": "A"
         }
       ],
@@ -637,16 +586,20 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "15m",
   "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
       {
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": {
           "type": "yesoreyeram-infinity-datasource",
-          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          "uid": "edls7aoqomqkga"
         },
         "definition": "",
         "includeAll": true,
@@ -712,10 +665,13 @@
       },
       {
         "allowCustomValue": false,
-        "current": {},
+        "current": {
+          "text": "Hemit.BizTalk.PASEvent.Receiver.Orchestrations.sndRcvSQLGetPASEventsPortType",
+          "value": "106"
+        },
         "datasource": {
           "type": "yesoreyeram-infinity-datasource",
-          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          "uid": "edls7aoqomqkga"
         },
         "definition": "",
         "includeAll": false,
@@ -732,22 +688,66 @@
               },
               {
                 "selector": "name",
-                "text": "name",
-                "type": "string"
-              },
-              {
-                "selector": "system",
-                "text": "system",
-                "type": "string"
-              }
-            ],
-            "computed_columns": [
-              {
-                "selector": "name + \" \" + system",
                 "text": "__text",
                 "type": "string"
               }
             ],
+            "computed_columns": [],
+            "filterExpression": "",
+            "filters": [],
+            "format": "table",
+            "json_options": {
+              "root_is_not_array": false
+            },
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "#(type=$GetTypes)#",
+            "source": "url",
+            "type": "json",
+            "url": "https://topology.eyer.ai/api/definitions/nodes",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": "BTS Message`",
+          "value": "BTS Message`"
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "edls7aoqomqkga"
+        },
+        "definition": "",
+        "includeAll": false,
+        "label": "Select Type",
+        "name": "GetTypes",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "type",
+                "text": "type",
+                "type": "string"
+              }
+            ],
+            "computed_columns": [],
             "filterExpression": "",
             "filters": [],
             "format": "table",
@@ -786,8 +786,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Node Charting",
-  "uid": "eectqfhq7udq9c",
-  "version": 3,
-  "weekStart": ""
+  "title": "Node Charting with type",
+  "uid": "eectqfhq7udq8c",
+  "version": 24
 }
