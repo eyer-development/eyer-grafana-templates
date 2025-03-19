@@ -29,7 +29,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "11.5.0-81938"
+      "version": "11.6.0-84491"
     },
     {
       "type": "datasource",
@@ -108,8 +108,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-green",
-                "value": null
+                "color": "super-light-green"
               },
               {
                 "color": "super-light-orange",
@@ -147,7 +146,7 @@
         "showThresholdMarkers": false,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.0-81938",
+      "pluginVersion": "11.6.0-84491",
       "targets": [
         {
           "columns": [
@@ -204,8 +203,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-green",
-                "value": null
+                "color": "super-light-green"
               },
               {
                 "color": "super-light-orange",
@@ -241,7 +239,7 @@
         "showThresholdMarkers": false,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.0-81938",
+      "pluginVersion": "11.6.0-84491",
       "targets": [
         {
           "columns": [
@@ -302,8 +300,7 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "super-light-green",
-                "value": null
+                "color": "super-light-green"
               },
               {
                 "color": "super-light-orange",
@@ -369,7 +366,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.0-81938",
+      "pluginVersion": "11.6.0-84491",
       "targets": [
         {
           "columns": [
@@ -462,8 +459,7 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "super-light-green",
-                "value": null
+                "color": "super-light-green"
               },
               {
                 "color": "super-light-orange",
@@ -529,7 +525,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.0-81938",
+      "pluginVersion": "11.6.0-84491",
       "targets": [
         {
           "columns": [
@@ -624,8 +620,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-green",
-                "value": null
+                "color": "super-light-green"
               },
               {
                 "color": "super-light-orange",
@@ -742,8 +737,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-green",
-                "value": null
+                "color": "super-light-green"
               },
               {
                 "color": "super-light-orange",
@@ -897,8 +891,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-green",
-                "value": null
+                "color": "super-light-green"
               },
               {
                 "color": "super-light-orange",
@@ -937,7 +930,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.0-81938",
+      "pluginVersion": "11.6.0-84491",
       "targets": [
         {
           "columns": [
@@ -1007,7 +1000,7 @@
         "content": "<h3>Info on selected alert</h3>\nAlertId: ${GetAlertID:text}</p>\nNodes affected: ${GetAlertNodesName}<br>\nMetrics affected: ${GetAlertMetricsName}\n",
         "mode": "html"
       },
-      "pluginVersion": "11.5.0-81938",
+      "pluginVersion": "11.6.0-84491",
       "type": "text"
     },
     {
@@ -1027,7 +1020,7 @@
         "nodes": {},
         "zoomMode": "cooperative"
       },
-      "pluginVersion": "11.5.0-81938",
+      "pluginVersion": "11.6.0-84491",
       "targets": [
         {
           "columns": [
@@ -1179,8 +1172,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1349,7 +1341,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0-82015",
+      "pluginVersion": "11.6.0-84214",
       "repeat": "GetAlertMetricsAndName",
       "repeatDirection": "h",
       "targets": [
@@ -1358,7 +1350,7 @@
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
           },
-          "query": "from(bucket: \"environment_key/RP_DetectionCorridor\")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r._measurement == \"DetectionCorridor\")\n    |> filter(fn: (r) => r.stid == \"${GetAlertMetricsAndName:value}\" and r.nid == \"${GetAlertNodes}\")\n    |> filter(fn: (r) => \n        r[\"_field\"] == \"maindown\" or \n        r[\"_field\"] == \"mainup\" or \n        r[\"_field\"] == \"c\" or \n        r[\"_field\"] == \"v\" or \n        r[\"_field\"] == \"mx\" or \n        r[\"_field\"] == \"supdown\" or \n        r[\"_field\"] == \"supup\" or \n        r[\"_field\"] == \"infup\" or \n        r[\"_field\"] == \"infdown\"\n    )\n    |> group(columns: [\"_time\"])\n    |> reduce(\n        identity: {\n            _time: time(v: 0),\n            c: 0.0, \n            mx: 0.0, \n            v: 0.0,\n            maindown: 0.0, \n            mainup: 0.0, \n            supdown: 0.0, \n            supup: 0.0, \n            infup: 0.0, \n            infdown: 0.0\n        },\n        fn: (r, accumulator) => ({\n            _time: r._time,\n            c: if r._field == \"c\" then r._value else accumulator.c, \n            mx: if r._field == \"mx\" then r._value else accumulator.mx, \n            v: if r._field == \"v\" then r._value else accumulator.v,\n            maindown: if r._field == \"maindown\" then r._value else accumulator.maindown,\n            mainup: if r._field == \"mainup\" then r._value else accumulator.mainup,\n            supdown: if r._field == \"supdown\" then r._value else accumulator.supdown,\n            supup: if r._field == \"supup\" then r._value else accumulator.supup,\n            infdown: if r._field == \"infdown\" then r._value else accumulator.infdown,\n            infup: if r._field == \"infup\" then r._value else accumulator.infup\n        })\n    )\n    |> map(fn: (r) => ({ r with avg: r.v / r.c }))\n    |> group()",
+          "query": "from(bucket: \"environment_id/RP_DetectionCorridor\")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r._measurement == \"DetectionCorridor\")\n    |> filter(fn: (r) => r.stid == \"${GetAlertMetricsAndName:value}\" and r.nid == \"${GetAlertNodes}\")\n    |> filter(fn: (r) => \n        r[\"_field\"] == \"maindown\" or \n        r[\"_field\"] == \"mainup\" or \n        r[\"_field\"] == \"c\" or \n        r[\"_field\"] == \"v\" or \n        r[\"_field\"] == \"mx\" or \n        r[\"_field\"] == \"supdown\" or \n        r[\"_field\"] == \"supup\" or \n        r[\"_field\"] == \"infup\" or \n        r[\"_field\"] == \"infdown\"\n    )\n    |> group(columns: [\"_time\"])\n    |> reduce(\n        identity: {\n            _time: time(v: 0),\n            c: 0.0, \n            mx: 0.0, \n            v: 0.0,\n            maindown: 0.0, \n            mainup: 0.0, \n            supdown: 0.0, \n            supup: 0.0, \n            infup: 0.0, \n            infdown: 0.0\n        },\n        fn: (r, accumulator) => ({\n            _time: r._time,\n            c: if r._field == \"c\" then r._value else accumulator.c, \n            mx: if r._field == \"mx\" then r._value else accumulator.mx, \n            v: if r._field == \"v\" then r._value else accumulator.v,\n            maindown: if r._field == \"maindown\" then r._value else accumulator.maindown,\n            mainup: if r._field == \"mainup\" then r._value else accumulator.mainup,\n            supdown: if r._field == \"supdown\" then r._value else accumulator.supdown,\n            supup: if r._field == \"supup\" then r._value else accumulator.supup,\n            infdown: if r._field == \"infdown\" then r._value else accumulator.infdown,\n            infup: if r._field == \"infup\" then r._value else accumulator.infup\n        })\n    )\n    |> map(fn: (r) => ({ r with avg: r.v / r.c }))\n    |> group()",
           "refId": "A"
         }
       ],
@@ -1367,7 +1359,7 @@
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 40,
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
@@ -1629,7 +1621,12 @@
             "columns": [
               {
                 "selector": "id",
-                "text": "Id",
+                "text": "__value",
+                "type": "string"
+              },
+              {
+                "selector": "name",
+                "text": "__text",
                 "type": "string"
               }
             ],
@@ -1790,153 +1787,18 @@
         "options": [
           {
             "selected": false,
-            "text": "25",
-            "value": "25"
+            "text": "69",
+            "value": "69"
           },
           {
             "selected": false,
-            "text": "2",
-            "value": "2"
+            "text": "52",
+            "value": "52"
           },
           {
             "selected": false,
-            "text": "3",
-            "value": "3"
-          },
-          {
-            "selected": false,
-            "text": "11",
-            "value": "11"
-          },
-          {
-            "selected": false,
-            "text": "15",
-            "value": "15"
-          },
-          {
-            "selected": false,
-            "text": "19",
-            "value": "19"
-          },
-          {
-            "selected": false,
-            "text": "20",
-            "value": "20"
-          },
-          {
-            "selected": false,
-            "text": "22",
-            "value": "22"
-          },
-          {
-            "selected": false,
-            "text": "27",
-            "value": "27"
-          },
-          {
-            "selected": false,
-            "text": "28",
-            "value": "28"
-          },
-          {
-            "selected": false,
-            "text": "29",
-            "value": "29"
-          },
-          {
-            "selected": false,
-            "text": "31",
-            "value": "31"
-          },
-          {
-            "selected": false,
-            "text": "32",
-            "value": "32"
-          },
-          {
-            "selected": false,
-            "text": "33",
-            "value": "33"
-          },
-          {
-            "selected": false,
-            "text": "35",
-            "value": "35"
-          },
-          {
-            "selected": false,
-            "text": "36",
-            "value": "36"
-          },
-          {
-            "selected": false,
-            "text": "37",
-            "value": "37"
-          },
-          {
-            "selected": false,
-            "text": "38",
-            "value": "38"
-          },
-          {
-            "selected": false,
-            "text": "39",
-            "value": "39"
-          },
-          {
-            "selected": false,
-            "text": "41",
-            "value": "41"
-          },
-          {
-            "selected": false,
-            "text": "42",
-            "value": "42"
-          },
-          {
-            "selected": false,
-            "text": "44",
-            "value": "44"
-          },
-          {
-            "selected": false,
-            "text": "45",
-            "value": "45"
-          },
-          {
-            "selected": false,
-            "text": "46",
-            "value": "46"
-          },
-          {
-            "selected": false,
-            "text": "47",
-            "value": "47"
-          },
-          {
-            "selected": false,
-            "text": "48",
-            "value": "48"
-          },
-          {
-            "selected": false,
-            "text": "50",
-            "value": "50"
-          },
-          {
-            "selected": false,
-            "text": "53",
-            "value": "53"
-          },
-          {
-            "selected": false,
-            "text": "62",
-            "value": "62"
-          },
-          {
-            "selected": false,
-            "text": "65",
-            "value": "65"
+            "text": "75",
+            "value": "75"
           },
           {
             "selected": false,
@@ -1945,23 +1807,68 @@
           },
           {
             "selected": false,
-            "text": "67",
-            "value": "67"
+            "text": "2",
+            "value": "2"
           },
           {
             "selected": false,
-            "text": "68",
-            "value": "68"
+            "text": "21",
+            "value": "21"
+          },
+          {
+            "selected": false,
+            "text": "30",
+            "value": "30"
+          },
+          {
+            "selected": false,
+            "text": "32",
+            "value": "32"
+          },
+          {
+            "selected": false,
+            "text": "35",
+            "value": "35"
+          },
+          {
+            "selected": false,
+            "text": "38",
+            "value": "38"
+          },
+          {
+            "selected": false,
+            "text": "42",
+            "value": "42"
+          },
+          {
+            "selected": false,
+            "text": "46",
+            "value": "46"
+          },
+          {
+            "selected": false,
+            "text": "51",
+            "value": "51"
+          },
+          {
+            "selected": false,
+            "text": "62",
+            "value": "62"
+          },
+          {
+            "selected": false,
+            "text": "66",
+            "value": "66"
+          },
+          {
+            "selected": false,
+            "text": "69",
+            "value": "69"
           },
           {
             "selected": false,
             "text": "70",
             "value": "70"
-          },
-          {
-            "selected": false,
-            "text": "71",
-            "value": "71"
           },
           {
             "selected": false,
@@ -1975,8 +1882,8 @@
           },
           {
             "selected": false,
-            "text": "74",
-            "value": "74"
+            "text": "75",
+            "value": "75"
           },
           {
             "selected": false,
@@ -2010,23 +1917,8 @@
           },
           {
             "selected": false,
-            "text": "87",
-            "value": "87"
-          },
-          {
-            "selected": false,
-            "text": "88",
-            "value": "88"
-          },
-          {
-            "selected": false,
             "text": "89",
             "value": "89"
-          },
-          {
-            "selected": false,
-            "text": "90",
-            "value": "90"
           },
           {
             "selected": false,
@@ -2035,18 +1927,213 @@
           },
           {
             "selected": false,
-            "text": "94",
-            "value": "94"
-          },
-          {
-            "selected": false,
             "text": "95",
             "value": "95"
           },
           {
             "selected": false,
-            "text": "97",
-            "value": "97"
+            "text": "3",
+            "value": "3"
+          },
+          {
+            "selected": false,
+            "text": "11",
+            "value": "11"
+          },
+          {
+            "selected": false,
+            "text": "12",
+            "value": "12"
+          },
+          {
+            "selected": false,
+            "text": "17",
+            "value": "17"
+          },
+          {
+            "selected": false,
+            "text": "19",
+            "value": "19"
+          },
+          {
+            "selected": false,
+            "text": "20",
+            "value": "20"
+          },
+          {
+            "selected": false,
+            "text": "22",
+            "value": "22"
+          },
+          {
+            "selected": false,
+            "text": "24",
+            "value": "24"
+          },
+          {
+            "selected": false,
+            "text": "25",
+            "value": "25"
+          },
+          {
+            "selected": false,
+            "text": "26",
+            "value": "26"
+          },
+          {
+            "selected": false,
+            "text": "27",
+            "value": "27"
+          },
+          {
+            "selected": false,
+            "text": "28",
+            "value": "28"
+          },
+          {
+            "selected": false,
+            "text": "29",
+            "value": "29"
+          },
+          {
+            "selected": false,
+            "text": "31",
+            "value": "31"
+          },
+          {
+            "selected": false,
+            "text": "36",
+            "value": "36"
+          },
+          {
+            "selected": false,
+            "text": "37",
+            "value": "37"
+          },
+          {
+            "selected": false,
+            "text": "39",
+            "value": "39"
+          },
+          {
+            "selected": false,
+            "text": "40",
+            "value": "40"
+          },
+          {
+            "selected": false,
+            "text": "41",
+            "value": "41"
+          },
+          {
+            "selected": false,
+            "text": "43",
+            "value": "43"
+          },
+          {
+            "selected": false,
+            "text": "44",
+            "value": "44"
+          },
+          {
+            "selected": false,
+            "text": "45",
+            "value": "45"
+          },
+          {
+            "selected": false,
+            "text": "47",
+            "value": "47"
+          },
+          {
+            "selected": false,
+            "text": "48",
+            "value": "48"
+          },
+          {
+            "selected": false,
+            "text": "50",
+            "value": "50"
+          },
+          {
+            "selected": false,
+            "text": "52",
+            "value": "52"
+          },
+          {
+            "selected": false,
+            "text": "53",
+            "value": "53"
+          },
+          {
+            "selected": false,
+            "text": "61",
+            "value": "61"
+          },
+          {
+            "selected": false,
+            "text": "65",
+            "value": "65"
+          },
+          {
+            "selected": false,
+            "text": "67",
+            "value": "67"
+          },
+          {
+            "selected": false,
+            "text": "68",
+            "value": "68"
+          },
+          {
+            "selected": false,
+            "text": "71",
+            "value": "71"
+          },
+          {
+            "selected": false,
+            "text": "74",
+            "value": "74"
+          },
+          {
+            "selected": false,
+            "text": "78",
+            "value": "78"
+          },
+          {
+            "selected": false,
+            "text": "79",
+            "value": "79"
+          },
+          {
+            "selected": false,
+            "text": "83",
+            "value": "83"
+          },
+          {
+            "selected": false,
+            "text": "87",
+            "value": "87"
+          },
+          {
+            "selected": false,
+            "text": "90",
+            "value": "90"
+          },
+          {
+            "selected": false,
+            "text": "93",
+            "value": "93"
+          },
+          {
+            "selected": false,
+            "text": "94",
+            "value": "94"
+          },
+          {
+            "selected": false,
+            "text": "15",
+            "value": "15"
           }
         ],
         "query": "${GetAlertNodes:raw}, ${CorrelationSecondaryNodes:raw}",
@@ -2060,8 +2147,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Alert investigation flow",
-  "uid": "decuaors2vldsf",
-  "version": 15,
+  "title": "Alert Investigation",
+  "uid": "decuaors2vldee",
+  "version": 1,
   "weekStart": ""
 }
