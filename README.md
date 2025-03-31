@@ -5,3 +5,5 @@
 4. Save the template and import in Grafana
 
 For additional instructions please see https://customer.support.eyer.ai/servicedesk/customer/portal/1/article/206897153 and https://customer.support.eyer.ai/servicedesk/customer/portal/1/article/141950977
+
+** Dashboards available **
