@@ -259,7 +259,7 @@
             "type": "yesoreyeram-infinity-datasource",
             "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
           },
-          "filterExpression": "AlertStatus<1",
+          "filterExpression": "AlertStatus<=1",
           "filters": [],
           "format": "table",
           "global_query_id": "",
@@ -418,7 +418,7 @@
             "type": "yesoreyeram-infinity-datasource",
             "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
           },
-          "filterExpression": "AlertStatus<1",
+          "filterExpression": "AlertStatus<=1",
           "filters": [],
           "format": "table",
           "global_query_id": "",
@@ -577,7 +577,7 @@
             "type": "yesoreyeram-infinity-datasource",
             "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
           },
-          "filterExpression": "AlertStatus<1",
+          "filterExpression": "AlertStatus<=1",
           "filters": [],
           "format": "table",
           "global_query_id": "",
@@ -693,7 +693,7 @@
             "type": "yesoreyeram-infinity-datasource",
             "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
           },
-          "filterExpression": "AlertStatus<1",
+          "filterExpression": "AlertStatus<=1",
           "filters": [],
           "format": "table",
           "global_query_id": "",
@@ -810,7 +810,7 @@
             "type": "yesoreyeram-infinity-datasource",
             "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
           },
-          "filterExpression": "AlertStatus<1",
+          "filterExpression": "AlertStatus<=1",
           "filters": [],
           "format": "table",
           "global_query_id": "",
