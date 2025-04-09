@@ -21,7 +21,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "11.6.0-84846"
+      "version": "12.0.0-85820"
     },
     {
       "type": "panel",
@@ -64,7 +64,7 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
       },
-      "description": "If this metric is equal or below 2, it means that most metrics are validated for anomaly alerting. Metrics with low frequency can take up to 4-5 weeks to learn properly ",
+      "description": "If this metric is equal or below 1, it means that most metrics are validated for anomaly alerting. Metrics with low frequency can take up to 4-5 weeks to learn properly ",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -80,7 +80,7 @@
               },
               {
                 "color": "super-light-orange",
-                "value": 2
+                "value": 1
               },
               {
                 "color": "super-light-red",
@@ -114,7 +114,7 @@
         "showThresholdMarkers": false,
         "sizing": "auto"
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.0.0-85820",
       "targets": [
         {
           "columns": [
@@ -209,7 +209,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Metrics with status < 2"
+                "value": "Metrics with status <= 1"
               }
             ]
           }
@@ -237,7 +237,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.0.0-85820",
       "targets": [
         {
           "columns": [
@@ -284,7 +284,7 @@
             "type": "yesoreyeram-infinity-datasource",
             "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
           },
-          "filterExpression": "status<2",
+          "filterExpression": "status<=1",
           "filters": [],
           "format": "table",
           "global_query_id": "",
@@ -377,7 +377,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.0.0-85820",
       "targets": [
         {
           "columns": [
@@ -423,8 +423,8 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2025-03-28T04:35:55.955Z",
+    "to": "2025-03-28T08:34:41.496Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -437,8 +437,8 @@
     ]
   },
   "timezone": "browser",
-  "title": "Machine Learning Status",
+  "title": "Machine Learning Status Dashboard",
   "uid": "deh6q17s88qgwf",
-  "version": 23,
+  "version": 27,
   "weekStart": ""
 }
