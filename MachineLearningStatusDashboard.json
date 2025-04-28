@@ -21,7 +21,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "12.0.0-85820"
+      "version": "12.0.0-86898"
     },
     {
       "type": "panel",
@@ -114,7 +114,7 @@
         "showThresholdMarkers": false,
         "sizing": "auto"
       },
-      "pluginVersion": "12.0.0-85820",
+      "pluginVersion": "12.0.0-86898",
       "targets": [
         {
           "columns": [
@@ -129,6 +129,7 @@
             "type": "yesoreyeram-infinity-datasource",
             "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
           },
+          "filterExpression": "status<=5",
           "filters": [],
           "format": "table",
           "global_query_id": "",
@@ -237,7 +238,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.0.0-85820",
+      "pluginVersion": "12.0.0-86898",
       "targets": [
         {
           "columns": [
@@ -337,7 +338,7 @@
           },
           "fieldMinMax": false,
           "mappings": [],
-          "max": 5,
+          "max": 7,
           "noValue": "no data",
           "thresholds": {
             "mode": "absolute",
@@ -377,7 +378,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.0-85820",
+      "pluginVersion": "12.0.0-86898",
       "targets": [
         {
           "columns": [
@@ -391,6 +392,7 @@
             "type": "yesoreyeram-infinity-datasource",
             "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
           },
+          "filterExpression": "status<=5",
           "filters": [],
           "format": "table",
           "global_query_id": "",
@@ -423,8 +425,8 @@
     "list": []
   },
   "time": {
-    "from": "2025-03-28T04:35:55.955Z",
-    "to": "2025-03-28T08:34:41.496Z"
+    "from": "now-2d",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -437,8 +439,8 @@
     ]
   },
   "timezone": "browser",
-  "title": "Machine Learning Status Dashboard",
+  "title": "Machine Learning Status",
   "uid": "deh6q17s88qgwf",
-  "version": 27,
+  "version": 30,
   "weekStart": ""
 }
