@@ -29,7 +29,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "11.6.0-84846"
+      "version": "12.0.0-86898"
     },
     {
       "type": "datasource",
@@ -96,101 +96,6 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
       },
-      "description": "If this metric is equal or below 2, it means that at least 75% of the alerts are validated. The validated alerts are shown in the \"Alerts\" gauge to the right",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "super-light-green"
-              },
-              {
-                "color": "super-light-orange",
-                "value": 3
-              },
-              {
-                "color": "super-light-red",
-                "value": 4
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 0,
-        "y": 0
-      },
-      "id": 59,
-      "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "p75"
-          ],
-          "fields": "/^status$/",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": false,
-        "sizing": "auto"
-      },
-      "pluginVersion": "11.6.0-84846",
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "alert_status",
-              "text": "status",
-              "type": "number"
-            }
-          ],
-          "computed_columns": [],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "$",
-          "source": "url",
-          "summarizeExpression": "",
-          "type": "json",
-          "url": "https://boomi.eyer.ai/api/v2/anomalies/current",
-          "url_options": {
-            "data": "",
-            "headers": [
-              {
-                "key": "Authorization",
-                "value": "apiTokenRead"
-              }
-            ],
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Noise Level",
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
-      },
       "description": "Validated alerts. This means that the alert has a status flag < 2 -> Eyer has enough data to do solid anomaly detection",
       "fieldConfig": {
         "defaults": {
@@ -221,8 +126,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 4,
-        "x": 4,
+        "w": 8,
+        "x": 0,
         "y": 0
       },
       "id": 63,
@@ -239,7 +144,7 @@
         "showThresholdMarkers": false,
         "sizing": "auto"
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.0.0-86898",
       "targets": [
         {
           "columns": [
@@ -366,7 +271,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.0.0-86898",
       "targets": [
         {
           "columns": [
@@ -525,7 +430,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.0.0-86898",
       "targets": [
         {
           "columns": [
@@ -930,7 +835,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.0.0-86898",
       "targets": [
         {
           "columns": [
@@ -1000,7 +905,7 @@
         "content": "<h3>Info on selected alert</h3>\nAlertId: ${GetAlertID}</p>\nNodes affected: ${GetAlertNodesName}<br>\nMetrics affected: ${GetAlertMetricsName}\n",
         "mode": "html"
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.0.0-86898",
       "type": "text"
     },
     {
@@ -1017,10 +922,11 @@
       "id": 65,
       "options": {
         "edges": {},
+        "layoutAlgorithm": "layered",
         "nodes": {},
         "zoomMode": "cooperative"
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.0.0-86898",
       "targets": [
         {
           "columns": [
@@ -1144,7 +1050,7 @@
             "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
-            "gradientMode": "opacity",
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -1199,7 +1105,7 @@
                 "id": "color",
                 "value": {
                   "fixedColor": "green",
-                  "mode": "shades"
+                  "mode": "fixed"
                 }
               },
               {
@@ -1222,7 +1128,7 @@
                 "id": "color",
                 "value": {
                   "fixedColor": "blue",
-                  "mode": "shades"
+                  "mode": "fixed"
                 }
               },
               {
@@ -1245,7 +1151,7 @@
                 "id": "color",
                 "value": {
                   "fixedColor": "purple",
-                  "mode": "shades"
+                  "mode": "fixed"
                 }
               },
               {
@@ -1371,7 +1277,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.0.0-86898",
       "repeat": "GetAlertMetricsAndName",
       "repeatDirection": "h",
       "targets": [
@@ -1800,13 +1706,8 @@
         "options": [
           {
             "selected": false,
-            "text": "9",
-            "value": "9"
-          },
-          {
-            "selected": false,
-            "text": "44",
-            "value": "44"
+            "text": "",
+            "value": ""
           }
         ],
         "query": "${GetAlertNodes:raw}, ${CorrelationSecondaryNodes:raw}",
@@ -1831,6 +1732,6 @@
   "timezone": "browser",
   "title": "Alert investigation",
   "uid": "cebfvh3vo3r40e",
-  "version": 16,
+  "version": 23,
   "weekStart": ""
 }
