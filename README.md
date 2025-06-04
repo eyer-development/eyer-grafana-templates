@@ -15,4 +15,5 @@ For additional instructions please see https://customer.support.eyer.ai/serviced
 6. Top 20 BizTalk ports by count - view which BizTalk ports have the highest amount of transactions
 7. Dependency Topology - select any node in your Eyer environment, and see its discovered dependencies
 8. Single Metric Type Charting - select a metric type, and chart it across multiple nodes that have the same metric
-9. Topology - view a complete topology discovered by the Eyer correlation engine. 
+9. Topology - view a complete topology discovered by the Eyer correlation engine.
+10. Node Type Topology - view the components of selected type and their correlations.
