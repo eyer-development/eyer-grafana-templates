@@ -29,7 +29,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "11.6.0-84846"
+      "version": "12.2.0-16606054638"
     },
     {
       "type": "datasource",
@@ -69,7 +69,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
   "links": [],
   "liveNow": true,
   "panels": [
@@ -88,7 +87,8 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "super-light-green"
+                "color": "super-light-green",
+                "value": 0
               },
               {
                 "color": "super-light-orange",
@@ -154,7 +154,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.2.0-16606054638",
       "targets": [
         {
           "columns": [
@@ -208,7 +208,8 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "super-light-green"
+                "color": "super-light-green",
+                "value": 0
               },
               {
                 "color": "super-light-orange",
@@ -274,7 +275,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.2.0-16606054638",
       "targets": [
         {
           "columns": [
@@ -732,11 +733,22 @@
               },
               {
                 "selector": "name",
+                "text": "name",
+                "type": "string"
+              },
+              {
+                "selector": "system",
+                "text": "system",
+                "type": "string"
+              }
+            ],
+            "computed_columns": [
+              {
+                "selector": "system + \" - \" + name",
                 "text": "__text",
                 "type": "string"
               }
             ],
-            "computed_columns": [],
             "filterExpression": "",
             "filters": [],
             "format": "table",
@@ -828,7 +840,8 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Node Charting with type",
-  "uid": "eectqfhq7udq8f",
-  "version": 1,
-  "weekStart": ""
+  "uid": "eectqfhq7udq82",
+  "version": 2,
+  "weekStart": "",
+  "id": null
 }
