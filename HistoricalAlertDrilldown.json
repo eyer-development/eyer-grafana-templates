@@ -7,14 +7,6 @@
       "type": "datasource",
       "pluginId": "yesoreyeram-infinity-datasource",
       "pluginName": "Infinity"
-    },
-    {
-      "name": "DS_INFLUXDB",
-      "label": "influxdb",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
     }
   ],
   "__elements": {},
@@ -23,13 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "11.6.0-84846"
-    },
-    {
-      "type": "datasource",
-      "id": "influxdb",
-      "name": "InfluxDB",
-      "version": "1.0.0"
+      "version": "12.2.0-17245430286.patch1"
     },
     {
       "type": "panel",
@@ -47,7 +33,7 @@
       "type": "datasource",
       "id": "yesoreyeram-infinity-datasource",
       "name": "Infinity",
-      "version": "2.11.1"
+      "version": "3.4.1"
     }
   ],
   "annotations": {
@@ -69,7 +55,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
   "links": [],
   "panels": [
     {
@@ -111,6 +96,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -126,7 +112,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-green"
+                "color": "super-light-green",
+                "value": 0
               },
               {
                 "color": "super-light-orange",
@@ -165,7 +152,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "columns": [
@@ -231,16 +218,23 @@
           "custom": {
             "align": "auto",
             "cellOptions": {
-              "type": "auto"
+              "mode": "gradient",
+              "type": "color-background",
+              "wrapText": false
             },
-            "inspect": false
+            "inspect": true,
+            "tooltip": {
+              "placement": "auto"
+            },
+            "wrapHeaderText": false
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "light-blue",
+                "value": 0
               },
               {
                 "color": "red",
@@ -268,9 +262,15 @@
           ],
           "show": false
         },
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "learning_status"
+          }
+        ]
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "columns": [],
@@ -299,19 +299,19 @@
           }
         }
       ],
-      "title": "Alert history updates for $alertId",
+      "title": "Alert history updates for alert $alertId",
       "type": "table"
     },
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "light-blue",
+            "mode": "shades"
           },
           "custom": {
             "axisBorderShow": false,
@@ -323,7 +323,7 @@
             "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
-            "gradientMode": "none",
+            "gradientMode": "hue",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -331,12 +331,16 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -351,11 +355,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": 0
               }
             ]
           }
@@ -364,225 +365,36 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mainup"
+              "options": "corridors.inf.up"
             },
             "properties": [
               {
                 "id": "custom.fillBelowTo",
-                "value": "maindown"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-green",
-                  "mode": "shades"
-                }
-              },
-              {
-                "id": "custom.showPoints",
-                "value": "never"
+                "value": "corridors.inf.down"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "supup"
+              "options": "corridors.main.up"
             },
             "properties": [
               {
                 "id": "custom.fillBelowTo",
-                "value": "supdown"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "shades"
-                }
-              },
-              {
-                "id": "custom.showPoints",
-                "value": "never"
+                "value": "corridors.main.down"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "avg"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "transparent",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "display"
-            },
-            "properties": [
-              {
-                "id": "custom.drawStyle",
-                "value": "line"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "yellow",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "v"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "transparent",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "c"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "transparent",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "mx"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "transparent",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "infup"
+              "options": "corridors.sup.up"
             },
             "properties": [
               {
                 "id": "custom.fillBelowTo",
-                "value": "infdown"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "shades"
-                }
-              },
-              {
-                "id": "custom.showPoints",
-                "value": "never"
-              }
-            ]
-          },
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "display",
-                  "infdown",
-                  "infup",
-                  "maindown",
-                  "mainup",
-                  "mx",
-                  "supdown",
-                  "supup",
-                  "avg"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "infdown"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "transparent",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "maindown"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "transparent",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "supdown"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "transparent",
-                  "mode": "fixed"
-                }
+                "value": "corridors.sup.down"
               }
             ]
           }
@@ -594,13 +406,13 @@
         "x": 0,
         "y": 15
       },
-      "id": 3,
+      "id": 4,
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -608,17 +420,77 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0-84846",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "repeat": "getDetails",
       "repeatDirection": "h",
       "targets": [
         {
+          "columns": [
+            {
+              "selector": "smoothened",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "timestamp",
+              "text": "",
+              "type": "timestamp_epoch"
+            },
+            {
+              "selector": "corridors.main.up",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.main.down",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.sup.up",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.sup.down",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.inf.up",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.inf.down",
+              "text": "",
+              "type": "number"
+            }
+          ],
+          "computed_columns": [],
           "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
           },
-          "query": "import \"strings\"\n\nfrom(bucket: \"environment_id/RP_DetectionCorridor\")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r._measurement == \"DetectionCorridor\")\n    |> filter(fn: (r) => r.stid == \"${getDetails:value}\" and r.nid == \"${getNodes:value}\")\n    |> filter(fn: (r) => \n        r[\"_field\"] == \"maindown\" or \n        r[\"_field\"] == \"mainup\" or \n        r[\"_field\"] == \"c\" or \n        r[\"_field\"] == \"v\" or \n        r[\"_field\"] == \"mx\" or \n        r[\"_field\"] == \"supdown\" or \n        r[\"_field\"] == \"supup\" or \n        r[\"_field\"] == \"infup\" or \n        r[\"_field\"] == \"infdown\"\n    )\n    |> group(columns: [\"_time\"])\n    |> reduce(\n        identity: {\n            _time: time(v: 0),\n            c: 0.0, \n            mx: 0.0, \n            v: 0.0,\n            maindown: 0.0, \n            mainup: 0.0, \n            supdown: 0.0, \n            supup: 0.0, \n            infup: 0.0, \n            infdown: 0.0\n        },\n        fn: (r, accumulator) => ({\n            _time: r._time,\n            c: if r._field == \"c\" then r._value else accumulator.c, \n            mx: if r._field == \"mx\" then r._value else accumulator.mx, \n            v: if r._field == \"v\" then r._value else accumulator.v,\n            maindown: if r._field == \"maindown\" then r._value else accumulator.maindown,\n            mainup: if r._field == \"mainup\" then r._value else accumulator.mainup,\n            supdown: if r._field == \"supdown\" then r._value else accumulator.supdown,\n            supup: if r._field == \"supup\" then r._value else accumulator.supup,\n            infdown: if r._field == \"infdown\" then r._value else accumulator.infdown,\n            infup: if r._field == \"infup\" then r._value else accumulator.infup\n        })\n    )\n    |> map(fn: (r) => ({ r with avg: r.v / r.c }))\n   |> map(fn: (r) => ({ r with display: if strings.hasPrefix(v:\"${getDetails:text}\",prefix:\"avg\") then r.avg else if strings.hasPrefix(v:\"${getDetails:text}\",prefix:\"max\") then r.mx else r.v }))\n    |> window(every: if strings.hasPrefix(v:\"${getDetails:text}\",prefix:\"sum\") then 1m else 1m, period: 1m)\n    |> group()",
-          "refId": "A"
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "data",
+          "source": "url",
+          "type": "json",
+          "url": "https://api.eyer.ai/v1/ad/metrics/${getNodes:value}/${getDetails:value}?from=${__from:date}&to=${__to:date}",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
         }
       ],
       "title": "${getDetails}",
@@ -632,8 +504,8 @@
       {
         "allowCustomValue": true,
         "current": {
-          "text": "67e5455bd49367b7ae627fc2",
-          "value": "67e5455bd49367b7ae627fc2"
+          "text": "68b55b2ea2e687dc2249a969",
+          "value": "68b55b2ea2e687dc2249a969"
         },
         "label": "Alert Id",
         "name": "alertId",
@@ -815,13 +687,14 @@
     ]
   },
   "time": {
-    "from": "2025-03-27T12:12:30.853Z",
-    "to": "2025-03-27T12:53:12.187Z"
+    "from": "2025-09-01T08:50:06.261Z",
+    "to": "2025-09-02T16:47:25.254Z"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Historical Alert Drilldown",
   "uid": "fegsst1ukxtkwe",
-  "version": 15,
-  "weekStart": ""
+  "version": 25,
+  "weekStart": "",
+  "id": null
 }
