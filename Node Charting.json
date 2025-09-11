@@ -1,0 +1,704 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_YESOREYERAM-INFINITY-DATASOURCE",
+      "label": "yesoreyeram-infinity-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "yesoreyeram-infinity-datasource",
+      "pluginName": "Infinity"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.2.0-17556714384"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "yesoreyeram-infinity-datasource",
+      "name": "Infinity",
+      "version": "3.5.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": 0
+              },
+              {
+                "color": "super-light-orange",
+                "value": 50
+              },
+              {
+                "color": "super-light-red",
+                "value": 80
+              },
+              {
+                "color": "super-light-blue",
+                "value": 99
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "B summary"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Affected nodes"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "A summary"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total nodes"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 59,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.2.0-17556714384",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "node_id",
+              "text": "id",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "$",
+          "source": "url",
+          "summarizeExpression": "count (id)",
+          "type": "json",
+          "url": "https://topology.eyer.ai/api/definitions/nodes",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Total nodes monitored",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": 0
+              },
+              {
+                "color": "super-light-orange",
+                "value": 50
+              },
+              {
+                "color": "super-light-red",
+                "value": 80
+              },
+              {
+                "color": "super-light-blue",
+                "value": 99
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "A summary"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total metrics"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "B summary"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Affected metrics"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 60,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.2.0-17556714384",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "display_name",
+              "text": "Stats",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "$.metrics",
+          "source": "url",
+          "summarizeExpression": "count (Stats)",
+          "type": "json",
+          "url": "https://topology.eyer.ai/api/definitions/nodes",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Total metrics monitored",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-blue",
+            "mode": "shades"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "corridors.inf.up"
+            },
+            "properties": [
+              {
+                "id": "custom.fillBelowTo",
+                "value": "corridors.inf.down"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "corridors.main.up"
+            },
+            "properties": [
+              {
+                "id": "custom.fillBelowTo",
+                "value": "corridors.main.down"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "corridors.sup.up"
+            },
+            "properties": [
+              {
+                "id": "custom.fillBelowTo",
+                "value": "corridors.sup.down"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 61,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.2.0-17556714384",
+      "repeat": "GetAlertMetricsAndName",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "smoothened",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "timestamp",
+              "text": "",
+              "type": "timestamp_epoch"
+            },
+            {
+              "selector": "corridors.main.up",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.main.down",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.sup.up",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.sup.down",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.inf.up",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.inf.down",
+              "text": "",
+              "type": "number"
+            }
+          ],
+          "computed_columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "data",
+          "source": "url",
+          "type": "json",
+          "url": "https://api.eyer.ai/v1/ad/metrics/${GetNodes:value}/${GetAlertMetricsAndName:value}?from=${__from:date}&to=${__to:date}",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "${GetAlertMetricsAndName:text}",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "15m",
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "includeAll": true,
+        "label": "Metrics",
+        "multi": true,
+        "name": "GetAlertMetricsAndName",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "id",
+                "text": "__value",
+                "type": "string"
+              },
+              {
+                "selector": "aggregation",
+                "text": "agg",
+                "type": "string"
+              },
+              {
+                "selector": "display_name",
+                "text": "name",
+                "type": "string"
+              }
+            ],
+            "computed_columns": [
+              {
+                "selector": "agg + \" \" + name",
+                "text": "__text",
+                "type": "string"
+              }
+            ],
+            "filterExpression": "",
+            "filters": [],
+            "format": "table",
+            "json_options": {
+              "root_is_not_array": false
+            },
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "#(node_id=${GetNodes:value}).metrics",
+            "source": "url",
+            "type": "json",
+            "url": "https://topology.eyer.ai/api/definitions/nodes",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "includeAll": false,
+        "label": "Select Node",
+        "name": "GetNodes",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "node_id",
+                "text": "__value",
+                "type": "string"
+              },
+              {
+                "selector": "name",
+                "text": "name",
+                "type": "string"
+              },
+              {
+                "selector": "system",
+                "text": "system",
+                "type": "string"
+              }
+            ],
+            "computed_columns": [
+              {
+                "selector": "system + \" - \" + name",
+                "text": "__text",
+                "type": "string"
+              }
+            ],
+            "filterExpression": "",
+            "filters": [],
+            "format": "table",
+            "json_options": {
+              "root_is_not_array": false
+            },
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "#(type=$GetTypes)#",
+            "source": "url",
+            "type": "json",
+            "url": "https://topology.eyer.ai/api/definitions/nodes",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "includeAll": false,
+        "label": "Select Type",
+        "name": "GetTypes",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "type",
+                "text": "type",
+                "type": "string"
+              }
+            ],
+            "computed_columns": [],
+            "filterExpression": "",
+            "filters": [],
+            "format": "table",
+            "json_options": {
+              "root_is_not_array": false
+            },
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "$",
+            "source": "url",
+            "type": "json",
+            "url": "https://topology.eyer.ai/api/definitions/nodes",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Node Charting with type",
+  "uid": "eectqfhq7udq12",
+  "version": 3,
+  "weekStart": "",
+  "id": null
+}
