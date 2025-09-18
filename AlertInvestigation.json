@@ -7,14 +7,6 @@
       "type": "datasource",
       "pluginId": "yesoreyeram-infinity-datasource",
       "pluginName": "Infinity"
-    },
-    {
-      "name": "DS_INFLUXDB",
-      "label": "influxdb",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
     }
   ],
   "__elements": {},
@@ -29,19 +21,13 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "12.0.0-86898"
-    },
-    {
-      "type": "datasource",
-      "id": "influxdb",
-      "name": "InfluxDB",
-      "version": "1.0.0"
+      "version": "12.2.0-17610496912"
     },
     {
       "type": "panel",
       "id": "marcusolsson-treemap-panel",
       "name": "Treemap",
-      "version": "2.0.1"
+      "version": "2.1.1"
     },
     {
       "type": "panel",
@@ -65,7 +51,7 @@
       "type": "datasource",
       "id": "yesoreyeram-infinity-datasource",
       "name": "Infinity",
-      "version": "2.11.1"
+      "version": "3.5.0"
     }
   ],
   "annotations": {
@@ -108,7 +94,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-green"
+                "color": "super-light-green",
+                "value": 0
               },
               {
                 "color": "super-light-orange",
@@ -144,7 +131,7 @@
         "showThresholdMarkers": false,
         "sizing": "auto"
       },
-      "pluginVersion": "12.0.0-86898",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "columns": [
@@ -205,7 +192,8 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "super-light-green"
+                "color": "super-light-green",
+                "value": 0
               },
               {
                 "color": "super-light-orange",
@@ -271,7 +259,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.0.0-86898",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "columns": [
@@ -364,7 +352,8 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "super-light-green"
+                "color": "super-light-green",
+                "value": 0
               },
               {
                 "color": "super-light-orange",
@@ -430,7 +419,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.0.0-86898",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "columns": [
@@ -513,7 +502,7 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
       },
-      "description": "This section show \"medium\" and \"severe\" alerts",
+      "description": "Metrics outside all baselines and stays there. A verified anomaly",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -525,7 +514,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-green"
+                "color": "super-light-green",
+                "value": 0
               },
               {
                 "color": "#ffcb7d",
@@ -542,11 +532,11 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 8,
         "x": 0,
         "y": 5
       },
-      "id": 68,
+      "id": 70,
       "options": {
         "colorByField": "Severity",
         "labelFields": [
@@ -558,7 +548,7 @@
         "textField": "NodeNames",
         "tiling": "treemapSquarify"
       },
-      "pluginVersion": "2.0.1",
+      "pluginVersion": "2.1.1",
       "targets": [
         {
           "columns": [
@@ -604,7 +594,7 @@
           "global_query_id": "",
           "parser": "backend",
           "refId": "A",
-          "root_selector": "#(severity_num>=2)#",
+          "root_selector": "#(severity_num=3)#",
           "source": "url",
           "summarizeBy": "",
           "summarizeExpression": "",
@@ -622,7 +612,7 @@
           }
         }
       ],
-      "title": "Needs your attention",
+      "title": "Verified anomalies",
       "type": "marcusolsson-treemap-panel"
     },
     {
@@ -630,7 +620,7 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
       },
-      "description": "This section show \"low\" anomaly alerts (single metrics and / or low deviations)",
+      "description": "Metrics alternating in and out of all baselines, and has the potential to become a verified anomaly.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -642,7 +632,126 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-green"
+                "color": "super-light-green",
+                "value": 0
+              },
+              {
+                "color": "#ffcb7d",
+                "value": 2
+              },
+              {
+                "color": "super-light-red",
+                "value": 3
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 5
+      },
+      "id": 68,
+      "options": {
+        "colorByField": "Severity",
+        "labelFields": [
+          "id",
+          "NodeNames",
+          "MetricInfo"
+        ],
+        "sizeField": "Metrics",
+        "textField": "NodeNames",
+        "tiling": "treemapSquarify"
+      },
+      "pluginVersion": "2.1.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "severity_num",
+              "text": "Severity",
+              "type": "number"
+            },
+            {
+              "selector": "id",
+              "text": "id",
+              "type": "string"
+            },
+            {
+              "selector": "items.#.node.name",
+              "text": "NodeNames",
+              "type": "string"
+            },
+            {
+              "selector": "metrics_affected",
+              "text": "Metrics",
+              "type": "number"
+            },
+            {
+              "selector": "items.#.metrics.#.name",
+              "text": "MetricInfo",
+              "type": "string"
+            },
+            {
+              "selector": "alert_status",
+              "text": "AlertStatus",
+              "type": "number"
+            }
+          ],
+          "computed_columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filterExpression": "AlertStatus<=1",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "#(severity_num=2)#",
+          "source": "url",
+          "summarizeBy": "",
+          "summarizeExpression": "",
+          "type": "json",
+          "url": "https://boomi.eyer.ai/api/v2/anomalies/current",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Emerging anomalies",
+      "type": "marcusolsson-treemap-panel"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "description": "Metrics are in the secondary baselines. Usually completely normal but can hide potential anomalies that can escalate and emerge.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "no data",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": 0
               },
               {
                 "color": "super-light-orange",
@@ -659,8 +768,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 5
       },
       "id": 67,
@@ -675,7 +784,7 @@
         "textField": "NodeNames",
         "tiling": "treemapSquarify"
       },
-      "pluginVersion": "2.0.1",
+      "pluginVersion": "2.1.1",
       "targets": [
         {
           "columns": [
@@ -739,7 +848,7 @@
           }
         }
       ],
-      "title": "Potential emerging anomalies",
+      "title": "Potential anomalies",
       "type": "marcusolsson-treemap-panel"
     },
     {
@@ -781,6 +890,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -796,7 +906,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-green"
+                "color": "super-light-green",
+                "value": 0
               },
               {
                 "color": "super-light-orange",
@@ -835,7 +946,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.0-86898",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "columns": [
@@ -890,8 +1001,8 @@
     },
     {
       "gridPos": {
-        "h": 5,
-        "w": 24,
+        "h": 13,
+        "w": 12,
         "x": 0,
         "y": 20
       },
@@ -905,7 +1016,7 @@
         "content": "<h3>Info on selected alert</h3>\nAlertId: ${GetAlertID}</p>\nNodes affected: ${GetAlertNodesName}<br>\nMetrics affected: ${GetAlertMetricsName}\n",
         "mode": "html"
       },
-      "pluginVersion": "12.0.0-86898",
+      "pluginVersion": "12.2.0-17610496912",
       "type": "text"
     },
     {
@@ -914,10 +1025,10 @@
         "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
       },
       "gridPos": {
-        "h": 12,
-        "w": 24,
-        "x": 0,
-        "y": 25
+        "h": 13,
+        "w": 12,
+        "x": 12,
+        "y": 20
       },
       "id": 65,
       "options": {
@@ -926,7 +1037,7 @@
         "nodes": {},
         "zoomMode": "cooperative"
       },
-      "pluginVersion": "12.0.0-86898",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "columns": [
@@ -1026,19 +1137,19 @@
           }
         }
       ],
-      "title": "Alert focused topology",
+      "title": "Alert focused topology (correlated components based on the alert)",
       "type": "nodeGraph"
     },
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "light-blue",
+            "mode": "shades"
           },
           "custom": {
             "axisBorderShow": false,
@@ -1050,7 +1161,7 @@
             "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
-            "gradientMode": "none",
+            "gradientMode": "hue",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -1062,11 +1173,12 @@
               "fill": "solid"
             },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "never",
+            "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1081,11 +1193,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": 0
               }
             ]
           }
@@ -1094,182 +1203,54 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mainup"
+              "options": "corridors.inf.up"
             },
             "properties": [
               {
                 "id": "custom.fillBelowTo",
-                "value": "maindown"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
-                }
-              },
-              {
-                "id": "custom.showPoints",
-                "value": "never"
+                "value": "corridors.inf.down"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "supup"
+              "options": "corridors.main.up"
             },
             "properties": [
               {
                 "id": "custom.fillBelowTo",
-                "value": "supdown"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "blue",
-                  "mode": "fixed"
-                }
-              },
-              {
-                "id": "custom.showPoints",
-                "value": "never"
+                "value": "corridors.main.down"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "infup"
+              "options": "corridors.sup.up"
             },
             "properties": [
               {
                 "id": "custom.fillBelowTo",
-                "value": "infdown"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "purple",
-                  "mode": "fixed"
-                }
-              },
-              {
-                "id": "custom.showPoints",
-                "value": "never"
-              }
-            ]
-          },
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "display",
-                  "infdown",
-                  "infup",
-                  "maindown",
-                  "mainup",
-                  "supdown",
-                  "supup"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "display"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "yellow",
-                  "mode": "fixed"
-                }
-              },
-              {
-                "id": "custom.drawStyle",
-                "value": "line"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "infdown"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-purple",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "maindown"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "supdown"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
+                "value": "corridors.sup.down"
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 33
       },
-      "id": 58,
-      "maxPerRow": 3,
+      "id": 69,
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -1277,17 +1258,77 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.0-86898",
+      "pluginVersion": "12.2.0-17610496912",
       "repeat": "GetAlertMetricsAndName",
       "repeatDirection": "h",
       "targets": [
         {
+          "columns": [
+            {
+              "selector": "smoothened",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "timestamp",
+              "text": "",
+              "type": "timestamp_epoch"
+            },
+            {
+              "selector": "corridors.main.up",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.main.down",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.sup.up",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.sup.down",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.inf.up",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "corridors.inf.down",
+              "text": "",
+              "type": "number"
+            }
+          ],
+          "computed_columns": [],
           "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
           },
-          "query": "import \"strings\"\n\nfrom(bucket: \"environment_id/RP_DetectionCorridor\")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r._measurement == \"DetectionCorridor\")\n    |> filter(fn: (r) => r.stid == \"${GetAlertMetricsAndName:value}\" and r.nid == \"${GetAlertNodes}\")\n    |> filter(fn: (r) => \n        r[\"_field\"] == \"maindown\" or \n        r[\"_field\"] == \"mainup\" or \n        r[\"_field\"] == \"c\" or \n        r[\"_field\"] == \"v\" or \n        r[\"_field\"] == \"mx\" or \n        r[\"_field\"] == \"supdown\" or \n        r[\"_field\"] == \"supup\" or \n        r[\"_field\"] == \"infup\" or \n        r[\"_field\"] == \"infdown\"\n    )\n    |> group(columns: [\"_time\"])\n    |> reduce(\n        identity: {\n            _time: time(v: 0),\n            c: 0.0, \n            mx: 0.0, \n            v: 0.0,\n            maindown: 0.0, \n            mainup: 0.0, \n            supdown: 0.0, \n            supup: 0.0, \n            infup: 0.0, \n            infdown: 0.0\n        },\n        fn: (r, accumulator) => ({\n            _time: r._time,\n            c: if r._field == \"c\" then r._value else accumulator.c, \n            mx: if r._field == \"mx\" then r._value else accumulator.mx, \n            v: if r._field == \"v\" then r._value else accumulator.v,\n            maindown: if r._field == \"maindown\" then r._value else accumulator.maindown,\n            mainup: if r._field == \"mainup\" then r._value else accumulator.mainup,\n            supdown: if r._field == \"supdown\" then r._value else accumulator.supdown,\n            supup: if r._field == \"supup\" then r._value else accumulator.supup,\n            infdown: if r._field == \"infdown\" then r._value else accumulator.infdown,\n            infup: if r._field == \"infup\" then r._value else accumulator.infup\n        })\n    )\n    |> map(fn: (r) => ({ r with avg: r.v / r.c }))\n   |> map(fn: (r) => ({ r with display: if strings.hasPrefix(v:\"${GetAlertMetricsAndName:text}\",prefix:\"avg\") then r.avg else if strings.hasPrefix(v:\"${GetAlertMetricsAndName:text}\",prefix:\"max\") then r.mx else r.v }))\n    |> window(every: if strings.hasPrefix(v:\"${GetAlertMetricsAndName:text}\",prefix:\"sum\") then 15m else 1m, period: 1m)\n    |> group()",
-          "refId": "A"
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "data",
+          "source": "url",
+          "type": "json",
+          "url": "https://api.eyer.ai/v1/ad/metrics/${GetAlertNodes}/${GetAlertMetricsAndName:value}?from=${__from:date}&to=${__to:date}",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Authorization",
+                "value": "apiTokenRead"
+              }
+            ],
+            "method": "GET"
+          }
         }
       ],
       "title": "${GetAlertMetricsAndName:text}",
@@ -1295,7 +1336,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 41,
+  "schemaVersion": 42,
   "tags": [],
   "templating": {
     "list": [
@@ -1706,8 +1747,88 @@
         "options": [
           {
             "selected": false,
-            "text": "",
-            "value": ""
+            "text": "18",
+            "value": "18"
+          },
+          {
+            "selected": false,
+            "text": "1",
+            "value": "1"
+          },
+          {
+            "selected": false,
+            "text": "2",
+            "value": "2"
+          },
+          {
+            "selected": false,
+            "text": "6",
+            "value": "6"
+          },
+          {
+            "selected": false,
+            "text": "8",
+            "value": "8"
+          },
+          {
+            "selected": false,
+            "text": "9",
+            "value": "9"
+          },
+          {
+            "selected": false,
+            "text": "11",
+            "value": "11"
+          },
+          {
+            "selected": false,
+            "text": "12",
+            "value": "12"
+          },
+          {
+            "selected": false,
+            "text": "14",
+            "value": "14"
+          },
+          {
+            "selected": false,
+            "text": "15",
+            "value": "15"
+          },
+          {
+            "selected": false,
+            "text": "16",
+            "value": "16"
+          },
+          {
+            "selected": false,
+            "text": "20",
+            "value": "20"
+          },
+          {
+            "selected": false,
+            "text": "27",
+            "value": "27"
+          },
+          {
+            "selected": false,
+            "text": "39",
+            "value": "39"
+          },
+          {
+            "selected": false,
+            "text": "234",
+            "value": "234"
+          },
+          {
+            "selected": false,
+            "text": "235",
+            "value": "235"
+          },
+          {
+            "selected": false,
+            "text": "245",
+            "value": "245"
           }
         ],
         "query": "${GetAlertNodes:raw}, ${CorrelationSecondaryNodes:raw}",
@@ -1731,7 +1852,7 @@
   },
   "timezone": "browser",
   "title": "Alert investigation",
-  "uid": "cebfvh3vo3r40e",
-  "version": 23,
+  "uid": "cebfvh3vo3r401",
+  "version": 9,
   "weekStart": ""
 }
