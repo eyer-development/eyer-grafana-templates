@@ -73,7 +73,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
   "links": [],
   "liveNow": true,
   "panels": [
@@ -502,7 +501,7 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
       },
-      "description": "Metrics outside all baselines and stays there. A verified anomaly",
+      "description": "Multiple verified anomalies. Verified means that the metric is outside all baselines. If the anomalies are limited to one node, more than 75% of the metrics of the node are affected. If more than one node has verified anomalies the alert is classified as high impact.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -612,7 +611,7 @@
           }
         }
       ],
-      "title": "Verified anomalies",
+      "title": "High impact alerts",
       "type": "marcusolsson-treemap-panel"
     },
     {
@@ -620,7 +619,7 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
       },
-      "description": "Metrics alternating in and out of all baselines, and has the potential to become a verified anomaly.",
+      "description": "Has at least one metric with a verified anomaly. Verified means that the metric is outside all baselines. Other metrics can be in secondary baselines, which can represent potential and emerging anomalies.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -730,7 +729,7 @@
           }
         }
       ],
-      "title": "Emerging anomalies",
+      "title": "Medium impact alerts",
       "type": "marcusolsson-treemap-panel"
     },
     {
@@ -738,7 +737,7 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
       },
-      "description": "Metrics are in the secondary baselines. Usually completely normal but can hide potential anomalies that can escalate and emerge.",
+      "description": "No verified anomalies on metrics. Verified means that metrics are outside all baselines. However, metrics can be in secondary baselines, which can represent potential and emerging anomalies.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -848,7 +847,7 @@
           }
         }
       ],
-      "title": "Potential anomalies",
+      "title": "Low impact alerts",
       "type": "marcusolsson-treemap-panel"
     },
     {
@@ -1747,8 +1746,8 @@
         "options": [
           {
             "selected": false,
-            "text": "18",
-            "value": "18"
+            "text": "39",
+            "value": "39"
           },
           {
             "selected": false,
@@ -1757,23 +1756,8 @@
           },
           {
             "selected": false,
-            "text": "2",
-            "value": "2"
-          },
-          {
-            "selected": false,
-            "text": "6",
-            "value": "6"
-          },
-          {
-            "selected": false,
-            "text": "8",
-            "value": "8"
-          },
-          {
-            "selected": false,
-            "text": "9",
-            "value": "9"
+            "text": "4",
+            "value": "4"
           },
           {
             "selected": false,
@@ -1787,8 +1771,8 @@
           },
           {
             "selected": false,
-            "text": "14",
-            "value": "14"
+            "text": "13",
+            "value": "13"
           },
           {
             "selected": false,
@@ -1797,13 +1781,23 @@
           },
           {
             "selected": false,
-            "text": "16",
-            "value": "16"
+            "text": "20",
+            "value": "20"
           },
           {
             "selected": false,
-            "text": "20",
-            "value": "20"
+            "text": "21",
+            "value": "21"
+          },
+          {
+            "selected": false,
+            "text": "24",
+            "value": "24"
+          },
+          {
+            "selected": false,
+            "text": "26",
+            "value": "26"
           },
           {
             "selected": false,
@@ -1812,18 +1806,83 @@
           },
           {
             "selected": false,
-            "text": "39",
-            "value": "39"
+            "text": "28",
+            "value": "28"
           },
           {
             "selected": false,
-            "text": "234",
-            "value": "234"
+            "text": "30",
+            "value": "30"
           },
           {
             "selected": false,
-            "text": "235",
-            "value": "235"
+            "text": "32",
+            "value": "32"
+          },
+          {
+            "selected": false,
+            "text": "35",
+            "value": "35"
+          },
+          {
+            "selected": false,
+            "text": "44",
+            "value": "44"
+          },
+          {
+            "selected": false,
+            "text": "45",
+            "value": "45"
+          },
+          {
+            "selected": false,
+            "text": "50",
+            "value": "50"
+          },
+          {
+            "selected": false,
+            "text": "52",
+            "value": "52"
+          },
+          {
+            "selected": false,
+            "text": "57",
+            "value": "57"
+          },
+          {
+            "selected": false,
+            "text": "64",
+            "value": "64"
+          },
+          {
+            "selected": false,
+            "text": "65",
+            "value": "65"
+          },
+          {
+            "selected": false,
+            "text": "132",
+            "value": "132"
+          },
+          {
+            "selected": false,
+            "text": "136",
+            "value": "136"
+          },
+          {
+            "selected": false,
+            "text": "137",
+            "value": "137"
+          },
+          {
+            "selected": false,
+            "text": "232",
+            "value": "232"
+          },
+          {
+            "selected": false,
+            "text": "240",
+            "value": "240"
           },
           {
             "selected": false,
@@ -1837,7 +1896,7 @@
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -1853,6 +1912,7 @@
   "timezone": "browser",
   "title": "Alert investigation",
   "uid": "cebfvh3vo3r401",
-  "version": 9,
-  "weekStart": ""
+  "version": 17,
+  "weekStart": "",
+  "id": null
 }
