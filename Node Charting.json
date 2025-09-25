@@ -12,16 +12,16 @@
   "__elements": {},
   "__requires": [
     {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "12.2.0-17556714384"
+      "version": "12.2.0-17638611789"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
     },
     {
       "type": "panel",
@@ -66,7 +66,8 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "light-blue",
+            "mode": "palette-classic-by-name"
           },
           "mappings": [],
           "thresholds": {
@@ -126,9 +127,11 @@
       },
       "id": 59,
       "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -136,11 +139,11 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "sizing": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17556714384",
+      "pluginVersion": "12.2.0-17638611789",
       "targets": [
         {
           "columns": [
@@ -177,7 +180,7 @@
         }
       ],
       "title": "Total nodes monitored",
-      "type": "gauge"
+      "type": "stat"
     },
     {
       "datasource": {
@@ -247,9 +250,11 @@
       },
       "id": 60,
       "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -257,11 +262,11 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "sizing": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17556714384",
+      "pluginVersion": "12.2.0-17638611789",
       "targets": [
         {
           "columns": [
@@ -298,7 +303,7 @@
         }
       ],
       "title": "Total metrics monitored",
-      "type": "gauge"
+      "type": "stat"
     },
     {
       "datasource": {
@@ -418,7 +423,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17556714384",
+      "pluginVersion": "12.2.0-17638611789",
       "repeat": "GetAlertMetricsAndName",
       "repeatDirection": "h",
       "targets": [
@@ -577,6 +582,58 @@
         },
         "definition": "",
         "includeAll": false,
+        "label": "Select Type",
+        "name": "GetTypes",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "type",
+                "text": "type",
+                "type": "string"
+              }
+            ],
+            "computed_columns": [],
+            "filterExpression": "",
+            "filters": [],
+            "format": "table",
+            "json_options": {
+              "root_is_not_array": false
+            },
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "$",
+            "source": "url",
+            "type": "json",
+            "url": "https://topology.eyer.ai/api/definitions/nodes",
+            "url_options": {
+              "data": "",
+              "headers": [
+                {
+                  "key": "Authorization",
+                  "value": "apiTokenRead"
+                }
+              ],
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {},
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+        },
+        "definition": "",
+        "includeAll": false,
         "label": "Select Node",
         "name": "GetNodes",
         "options": [],
@@ -635,58 +692,6 @@
         "refresh": 1,
         "regex": "",
         "type": "query"
-      },
-      {
-        "allowCustomValue": false,
-        "current": {},
-        "datasource": {
-          "type": "yesoreyeram-infinity-datasource",
-          "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
-        },
-        "definition": "",
-        "includeAll": false,
-        "label": "Select Type",
-        "name": "GetTypes",
-        "options": [],
-        "query": {
-          "infinityQuery": {
-            "columns": [
-              {
-                "selector": "type",
-                "text": "type",
-                "type": "string"
-              }
-            ],
-            "computed_columns": [],
-            "filterExpression": "",
-            "filters": [],
-            "format": "table",
-            "json_options": {
-              "root_is_not_array": false
-            },
-            "parser": "backend",
-            "refId": "variable",
-            "root_selector": "$",
-            "source": "url",
-            "type": "json",
-            "url": "https://topology.eyer.ai/api/definitions/nodes",
-            "url_options": {
-              "data": "",
-              "headers": [
-                {
-                  "key": "Authorization",
-                  "value": "apiTokenRead"
-                }
-              ],
-              "method": "GET"
-            }
-          },
-          "query": "",
-          "queryType": "infinity"
-        },
-        "refresh": 1,
-        "regex": "",
-        "type": "query"
       }
     ]
   },
@@ -696,9 +701,9 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Node Charting with type",
+  "title": "Node Charting",
   "uid": "eectqfhq7udq12",
-  "version": 3,
+  "version": 6,
   "weekStart": "",
   "id": null
 }
