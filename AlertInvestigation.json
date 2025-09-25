@@ -21,7 +21,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "12.2.0-17610496912"
+      "version": "12.2.0-17638611789"
     },
     {
       "type": "panel",
@@ -33,6 +33,12 @@
       "type": "panel",
       "id": "nodeGraph",
       "name": "Node Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
       "version": ""
     },
     {
@@ -118,19 +124,21 @@
       },
       "id": 63,
       "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [],
           "fields": "/^summary$/",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": false,
-        "sizing": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17610496912",
+      "pluginVersion": "12.2.0-17638611789",
       "targets": [
         {
           "columns": [
@@ -174,7 +182,7 @@
         }
       ],
       "title": "Validated Alerts",
-      "type": "gauge"
+      "type": "stat"
     },
     {
       "datasource": {
@@ -258,7 +266,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.0-17610496912",
+      "pluginVersion": "12.2.0-17638611789",
       "targets": [
         {
           "columns": [
@@ -418,7 +426,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.0-17610496912",
+      "pluginVersion": "12.2.0-17638611789",
       "targets": [
         {
           "columns": [
@@ -945,7 +953,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17610496912",
+      "pluginVersion": "12.2.0-17638611789",
       "targets": [
         {
           "columns": [
@@ -1746,8 +1754,23 @@
         "options": [
           {
             "selected": false,
-            "text": "39",
-            "value": "39"
+            "text": "24",
+            "value": "24"
+          },
+          {
+            "selected": false,
+            "text": "4",
+            "value": "4"
+          },
+          {
+            "selected": false,
+            "text": "30",
+            "value": "30"
+          },
+          {
+            "selected": false,
+            "text": "35",
+            "value": "35"
           },
           {
             "selected": false,
@@ -1756,8 +1779,8 @@
           },
           {
             "selected": false,
-            "text": "4",
-            "value": "4"
+            "text": "8",
+            "value": "8"
           },
           {
             "selected": false,
@@ -1771,13 +1794,13 @@
           },
           {
             "selected": false,
-            "text": "13",
-            "value": "13"
+            "text": "15",
+            "value": "15"
           },
           {
             "selected": false,
-            "text": "15",
-            "value": "15"
+            "text": "19",
+            "value": "19"
           },
           {
             "selected": false,
@@ -1796,21 +1819,6 @@
           },
           {
             "selected": false,
-            "text": "26",
-            "value": "26"
-          },
-          {
-            "selected": false,
-            "text": "27",
-            "value": "27"
-          },
-          {
-            "selected": false,
-            "text": "28",
-            "value": "28"
-          },
-          {
-            "selected": false,
             "text": "30",
             "value": "30"
           },
@@ -1823,6 +1831,11 @@
             "selected": false,
             "text": "35",
             "value": "35"
+          },
+          {
+            "selected": false,
+            "text": "39",
+            "value": "39"
           },
           {
             "selected": false,
@@ -1841,18 +1854,13 @@
           },
           {
             "selected": false,
+            "text": "51",
+            "value": "51"
+          },
+          {
+            "selected": false,
             "text": "52",
             "value": "52"
-          },
-          {
-            "selected": false,
-            "text": "57",
-            "value": "57"
-          },
-          {
-            "selected": false,
-            "text": "64",
-            "value": "64"
           },
           {
             "selected": false,
@@ -1886,8 +1894,38 @@
           },
           {
             "selected": false,
-            "text": "245",
-            "value": "245"
+            "text": "241",
+            "value": "241"
+          },
+          {
+            "selected": false,
+            "text": "4",
+            "value": "4"
+          },
+          {
+            "selected": false,
+            "text": "23",
+            "value": "23"
+          },
+          {
+            "selected": false,
+            "text": "28",
+            "value": "28"
+          },
+          {
+            "selected": false,
+            "text": "36",
+            "value": "36"
+          },
+          {
+            "selected": false,
+            "text": "120",
+            "value": "120"
+          },
+          {
+            "selected": false,
+            "text": "227",
+            "value": "227"
           }
         ],
         "query": "${GetAlertNodes:raw}, ${CorrelationSecondaryNodes:raw}",
@@ -1896,7 +1934,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {
@@ -1912,7 +1950,7 @@
   "timezone": "browser",
   "title": "Alert investigation",
   "uid": "cebfvh3vo3r401",
-  "version": 17,
+  "version": 18,
   "weekStart": "",
   "id": null
 }
